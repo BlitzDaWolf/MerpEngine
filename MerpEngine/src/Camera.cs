@@ -4,9 +4,9 @@ using System;
 
 namespace MerpEngine
 {
-    public class View
+    public class Camera
     {
-        public static View GameCamera;
+        public static Camera Main;
 
         private Vector2 position;
 
@@ -15,13 +15,13 @@ namespace MerpEngine
 
         public Vector2 Position => position;
 
-        public View(Vector2 startPosition, double startZoom = 1, double startRotation = 0)
+        public Camera(Vector2 startPosition, double startZoom = 1, double startRotation = 0)
         {
             this.position = startPosition;
             this.rotation = startRotation;
             this.zoom = startZoom;
 
-            GameCamera = this;
+            Main = this;
         }
 
         public Vector2 ToWorld(Vector2 input)

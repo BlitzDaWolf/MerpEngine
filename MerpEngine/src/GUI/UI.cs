@@ -106,7 +106,7 @@ namespace MerpEngine.GUI
                 return;
             SpriteBatch.Draw(
                 Material.texture,
-                View.GameCamera.Position - (new Vector2(Screen.Width, Screen.Heigth) / 2) + new Vector2(X, Y),
+                Camera.Main.Position - (new Vector2(Screen.Width, Screen.Heigth) / 2) + new Vector2(X, Y),
                 new Vector2(width / Material.texture.Size.X, heigth / Material.texture.Size.Y),
                 Vector2.Zero);
         }

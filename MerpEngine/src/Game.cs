@@ -12,7 +12,7 @@ namespace MerpEngine
     {
         public GameWindow window;
         EventHandeler handeler;
-        View view;
+        Camera view;
 
         Level level;
 
@@ -51,7 +51,7 @@ namespace MerpEngine
             Screen.Width = window.Width;
             Screen.Heigth = window.Height;
 
-            view = new View(Vector2.Zero);
+            view = new Camera(Vector2.Zero);
             Input.Initialize(window);
         }
 
