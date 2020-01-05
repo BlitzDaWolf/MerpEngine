@@ -18,6 +18,9 @@ namespace MerpEngine
 
         public static void Start()
         {
+            Debug.Info($"Loading levels");
+            LevelManager.loadLevels();
+            Debug.Info($"loaded {LevelManager.Levels.Count} level's");
 
             Thread t = new Thread(() =>
             {

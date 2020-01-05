@@ -6,6 +6,7 @@ namespace MerpEngine
 {
     public class Level
     {
+        public string Name = "";
         public List<Material> SharedMaterials = new List<Material>();
         public List<Compoment> compoments = new List<Compoment>();
         private SpriteMap spriteMap = new SpriteMap() { GridSize = 64 };

@@ -42,5 +42,22 @@ namespace MerpEngine
 
             return new Texture2D(id, new OpenTK.Vector2(bmp.Width, bmp.Height));
         }
+
+        /// <summary>
+        /// Loads a level from a file
+        /// </summary>
+        /// <param name="filePath">The path of the file</param>
+        /// <returns>retuns a level</returns>
+        public static Level LoadLevel(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                throw new Exception($"File does not exsists at '{filePath}'");
+            }
+
+            Level lvl = Newtonsoft.Json.JsonConvert.DeserializeObject<Level>(File.ReadAllText(filePath));
+
+            return lvl;
+        }
     }
 }

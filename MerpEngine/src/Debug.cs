@@ -35,7 +35,7 @@ namespace MerpEngine
             {
                 ConsoleColor old = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Green;
-                DisplayMessage(v, "into");
+                DisplayMessage(v, "info");
                 Console.ForegroundColor = old;
             }
         }
