@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MerpEngine
+﻿namespace MerpEngine
 {
     public class Compoment
     {

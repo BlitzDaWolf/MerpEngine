@@ -1,7 +1,5 @@
 ﻿using OpenTK;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MerpEngine
 {
@@ -38,7 +36,7 @@ namespace MerpEngine
                 {
                     string heigth = getSecond(argument, ref arguments);
                     int o = 0;
-                    if(int.TryParse(heigth, out o))
+                    if (int.TryParse(heigth, out o))
                     {
                         Screen.Heigth = o;
                     }

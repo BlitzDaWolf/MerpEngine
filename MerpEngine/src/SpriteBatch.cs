@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
-using System.Drawing;
 using RectangleF = System.Drawing.RectangleF;
 
 namespace MerpEngine
@@ -31,7 +27,7 @@ namespace MerpEngine
             GL.Begin(PrimitiveType.Quads);
             for (int i = 0; i < 4; i++)
             {
-                if(sourceRec == null) 
+                if (sourceRec == null)
                     GL.TexCoord2(vericies[i]);
                 else
                 {

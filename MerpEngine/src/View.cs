@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL;
-using System.Drawing;
+using System;
 
 namespace MerpEngine
 {

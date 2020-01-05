@@ -3,8 +3,18 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>1.0.0</Version>
+    <Authors>Xenor</Authors>
+    <Company>xenor</Company>
     <ApplicationIcon />
     <StartupObject />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/BlitzDaWolf/MerpEngine</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BlitzDaWolf/MerpEngine</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>gameengine 2D</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

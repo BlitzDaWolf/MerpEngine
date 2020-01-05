@@ -1,6 +1,4 @@
 ﻿using OpenTK;
-using System;
-using System.Drawing;
 using System.Linq;
 using Rectangle = System.Drawing.Rectangle;
 
@@ -17,7 +15,8 @@ namespace MerpEngine.GUI
         private int width;
         private int heigth;
 
-        public int X {
+        public int X
+        {
             get => position.X;
             set
             {
@@ -25,7 +24,8 @@ namespace MerpEngine.GUI
                 UpdatePosition();
             }
         }
-        public int Y {
+        public int Y
+        {
             get => position.Y;
             set
             {
@@ -34,7 +34,8 @@ namespace MerpEngine.GUI
             }
         }
 
-        public int Width {
+        public int Width
+        {
             get => position.Width;
             set
             {
@@ -42,7 +43,8 @@ namespace MerpEngine.GUI
                 UpdatePosition();
             }
         }
-        public int Heigth {
+        public int Heigth
+        {
             get => position.Height;
             set
             {
@@ -68,7 +70,7 @@ namespace MerpEngine.GUI
         {
 
         }
-        public UI(int x,int y, int width, int heigth)
+        public UI(int x, int y, int width, int heigth)
         {
             this.x = x;
             this.y = y;

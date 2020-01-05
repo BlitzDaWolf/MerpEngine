@@ -1,8 +1,4 @@
 ﻿using OpenTK;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
 using Rectangle = System.Drawing.Rectangle;
 
 namespace MerpEngine.GUI
@@ -13,7 +9,7 @@ namespace MerpEngine.GUI
         {
 
         }
-        public UIInput(int x, int y, int width, int heigth) : base(x,y,width,heigth)
+        public UIInput(int x, int y, int width, int heigth) : base(x, y, width, heigth)
         {
         }
         public UIInput(Vector2 position, Vector2 scale) : this((int)position.X, (int)position.Y, (int)scale.X, (int)scale.Y) { }

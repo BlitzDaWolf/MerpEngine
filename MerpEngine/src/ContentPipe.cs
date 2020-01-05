@@ -1,8 +1,8 @@
-﻿using System;
+﻿using OpenTK.Graphics.OpenGL;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using OpenTK.Graphics.OpenGL;
 
 namespace MerpEngine
 {

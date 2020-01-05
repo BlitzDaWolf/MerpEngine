@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Text;
 
 namespace MerpEngine
 {
@@ -13,7 +11,7 @@ namespace MerpEngine
         private static void DisplayMessage(object msg, string type = "Log")
         {
             StackTrace trace = new StackTrace();
-            
+
             if (!DisplayInfo)
                 return;
 #if DEBUG

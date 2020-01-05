@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace MerpEngine
@@ -10,7 +9,7 @@ namespace MerpEngine
 
         internal static void AddFrame(int a)
         {
-            if(frames.Count > 60)
+            if (frames.Count > 60)
             {
                 frames.Dequeue();
             }

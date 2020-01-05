@@ -1,14 +1,10 @@
 ﻿using MerpEngine.GUI;
-using MerpEngine.Renderes;
-using MerpEngine;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
-using OpenTK.Input;
 using System;
 using System.Diagnostics;
-using System.Drawing;
-using Color = OpenTK.Color;
 using System.Threading;
+using Color = OpenTK.Color;
 
 namespace MerpEngine
 {
@@ -23,7 +19,8 @@ namespace MerpEngine
         public static void Start()
         {
 
-            Thread t = new Thread(() => {
+            Thread t = new Thread(() =>
+            {
                 Debug.Info("Starting game client");
                 Debug.Info($"Starting game with [{Screen.Width}, {Screen.Heigth}]");
 
@@ -90,7 +87,7 @@ namespace MerpEngine
             Input.Update();
             level.Update();
 
-            if(sw.ElapsedMilliseconds > (1 * 1000))
+            if (sw.ElapsedMilliseconds > (1 * 1000))
             {
                 frameCount = frames;
                 frames = 0;
