@@ -25,7 +25,6 @@ namespace MerpEngine
             {
                 loadedLevel = 0;
                 SetLevel();
-                LaodedLevel.Name = "bla";
             }
             else
             {
@@ -42,7 +41,6 @@ namespace MerpEngine
         public static void Peek()
         {
             Debug.Log(Levels[loadedLevel].Save());
-            Debug.Log(LaodedLevel.Save());
         }
 
         public static void LoadLevel(int number)
@@ -50,7 +48,8 @@ namespace MerpEngine
             if(number != loadedLevel)
             {
                 LaodedLevel.Destroy();
-                LaodedLevel = Levels[number];
+                loadedLevel = number;
+                SetLevel();
                 LaodedLevel.Start();
             }
         }

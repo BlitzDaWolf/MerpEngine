@@ -9,6 +9,8 @@ namespace MerpEngineExample
         {
             Game.Start();
             LevelManager.Peek();
+            LevelManager.LoadLevel(1);
+            LevelManager.Peek();
         }
     }
 }
