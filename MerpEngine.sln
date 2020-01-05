@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerpEngine", "MerpEngine\MerpEngine.csproj", "{6D3D6227-9B1B-4628-9319-EDDEA56ADBFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerpEngine", "MerpEngine\MerpEngine.csproj", "{6D3D6227-9B1B-4628-9319-EDDEA56ADBFC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerpEngineExample", "MerpEngineExample\MerpEngineExample.csproj", "{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6D3D6227-9B1B-4628-9319-EDDEA56ADBFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D3D6227-9B1B-4628-9319-EDDEA56ADBFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D3D6227-9B1B-4628-9319-EDDEA56ADBFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
