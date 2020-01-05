@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerpEngine", "MerpEngine\Me
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerpEngineExample", "MerpEngineExample\MerpEngineExample.csproj", "{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerpEngineTests", "MerpEngineTests\MerpEngineTests.csproj", "{0A9D7677-EABB-4209-AB24-88F2EFF52C32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A9D7677-EABB-4209-AB24-88F2EFF52C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9D7677-EABB-4209-AB24-88F2EFF52C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9D7677-EABB-4209-AB24-88F2EFF52C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9D7677-EABB-4209-AB24-88F2EFF52C32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
