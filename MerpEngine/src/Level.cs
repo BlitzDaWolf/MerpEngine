@@ -1,4 +1,5 @@
 ﻿using MerpEngine.Renderes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,5 +19,9 @@ namespace MerpEngine
         internal void Update() => compoments.ForEach(i => i.Update());
 
         public string Save() => Newtonsoft.Json.JsonConvert.SerializeObject(this);
+
+        internal void Destroy() => compoments.ForEach(x => x.Destroy());
+
+        internal void Start() => compoments.ForEach(x => x.Start());
     }
 }
