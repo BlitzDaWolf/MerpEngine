@@ -2,6 +2,7 @@
 
 namespace MerpEngine
 {
+    [Serializable]
     public class Compoment
     {
         public virtual void Update() { }

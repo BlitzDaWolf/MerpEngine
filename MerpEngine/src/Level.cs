@@ -1,15 +1,18 @@
 ﻿using MerpEngine.Renderes;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace MerpEngine
 {
+    [Serializable]
     public class Level
     {
         public string Name = "";
         public List<Material> SharedMaterials = new List<Material>();
         public List<Compoment> compoments = new List<Compoment>();
+        [NonSerialized]
         private SpriteMap spriteMap = new SpriteMap() { GridSize = 64 };
 
         public List<Sprite> GetSprite(int x, int y) => spriteMap.GetSprite(x, y).OrderBy(i => i.RenderOrder).ToList();

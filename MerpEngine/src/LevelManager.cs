@@ -40,7 +40,7 @@ namespace MerpEngine
 
         public static void Peek()
         {
-            Debug.Log(Levels[loadedLevel].Save());
+            Debug.Log(LaodedLevel.Save());
         }
 
         public static void LoadLevel(int number)

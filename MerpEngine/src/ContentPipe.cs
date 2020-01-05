@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MerpEngine
 {
@@ -43,21 +44,29 @@ namespace MerpEngine
             return new Texture2D(id, new OpenTK.Vector2(bmp.Width, bmp.Height));
         }
 
-        /// <summary>
-        /// Loads a level from a file
-        /// </summary>
-        /// <param name="filePath">The path of the file</param>
-        /// <returns>retuns a level</returns>
-        public static Level LoadLevel(string filePath)
+        public static void SaveLevel(Level level, string path)
         {
-            if (!File.Exists(filePath))
+            BinaryFormatter formmater = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Create);
+            formmater.Serialize(stream, level);
+            stream.Close();
+        }
+
+        public static Level LoadLevel(string path)
+        {
+            if (File.Exists(path))
             {
-                throw new Exception($"File does not exsists at '{filePath}'");
+                BinaryFormatter formmater = new BinaryFormatter();
+                FileStream stream = new FileStream(path, FileMode.Open);
+
+                Level lvl = formmater.Deserialize(stream) as Level;
+                stream.Close();
+                return lvl;
             }
-
-            Level lvl = Newtonsoft.Json.JsonConvert.DeserializeObject<Level>(File.ReadAllText(filePath));
-
-            return lvl;
+            else
+            {
+                return null;
+            }
         }
     }
 }

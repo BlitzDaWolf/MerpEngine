@@ -14,8 +14,8 @@ namespace MerpEngine
 
             if (!DisplayInfo)
                 return;
-#if DEBUG
             ConsoleColor color = Console.ForegroundColor;
+#if DEBUG
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write("[*]");
             Console.ForegroundColor = color;
