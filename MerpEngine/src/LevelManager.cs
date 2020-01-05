@@ -24,12 +24,25 @@ namespace MerpEngine
             if(Levels.Count > 0)
             {
                 loadedLevel = 0;
+                SetLevel();
+                LaodedLevel.Name = "bla";
             }
             else
             {
                 Debug.Error("No levels where found shutting down");
                 // Shut down game
             }
+        }
+
+        private static void SetLevel()
+        {
+            LaodedLevel = Newtonsoft.Json.JsonConvert.DeserializeObject<Level>(Levels[loadedLevel].Save());
+        }
+
+        public static void Peek()
+        {
+            Debug.Log(Levels[loadedLevel].Save());
+            Debug.Log(LaodedLevel.Save());
         }
 
         public static void LoadLevel(int number)

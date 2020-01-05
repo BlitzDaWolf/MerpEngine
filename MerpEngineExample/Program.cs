@@ -7,10 +7,8 @@ namespace MerpEngineExample
     {
         static void Main(string[] args)
         {
-            Level l = new Level();
-            Debug.Log(l.Save());
-
             Game.Start();
+            LevelManager.Peek();
         }
     }
 }
