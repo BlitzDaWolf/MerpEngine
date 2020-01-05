@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace Engine
+namespace MerpEngine
 {
     public class Material
     {

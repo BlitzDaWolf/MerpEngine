@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using Rectangle = System.Drawing.Rectangle;
 
-namespace Engine.GUI
+namespace MerpEngine.GUI
 {
     public class UI
     {

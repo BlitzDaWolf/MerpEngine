@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace Engine.Renderes
+namespace MerpEngine.Renderes
 {
     public class SpriteMap
     {

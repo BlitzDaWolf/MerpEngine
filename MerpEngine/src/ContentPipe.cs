@@ -4,7 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using OpenTK.Graphics.OpenGL;
 
-namespace Engine
+namespace MerpEngine
 {
     public class ContentPipe
     {

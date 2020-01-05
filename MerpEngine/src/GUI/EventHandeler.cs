@@ -1,11 +1,10 @@
 ﻿using OpenTK;
-using QuickFont;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 
-namespace Engine.GUI
+namespace MerpEngine.GUI
 {
     public class EventHandeler
     {
@@ -15,8 +14,6 @@ namespace Engine.GUI
 
         List<UI> hoveredMaterials = new List<UI>();
         List<UI> lastHoveredMaterials = new List<UI>();
-
-        public QFontDrawing _drawing;
 
         public bool UIHover { get; private set; }
         public bool UIPressed { get; private set; }

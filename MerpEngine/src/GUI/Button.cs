@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Numerics;
 using System.Text;
 
-namespace Engine.GUI
+namespace MerpEngine.GUI
 {
     public class Button : UI
     {

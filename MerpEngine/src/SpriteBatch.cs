@@ -7,7 +7,7 @@ using OpenTK.Graphics.OpenGL;
 using System.Drawing;
 using RectangleF = System.Drawing.RectangleF;
 
-namespace Engine
+namespace MerpEngine
 {
     public class SpriteBatch
     {

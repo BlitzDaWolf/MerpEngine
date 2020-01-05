@@ -1,18 +1,16 @@
-﻿using Engine.GUI;
-using Engine.Renderes;
-using Engine;
+﻿using MerpEngine.GUI;
+using MerpEngine.Renderes;
+using MerpEngine;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Input;
-using QuickFont;
-using QuickFont.Configuration;
 using System;
 using System.Diagnostics;
 using System.Drawing;
 using Color = OpenTK.Color;
 using System.Threading;
 
-namespace Engine
+namespace MerpEngine
 {
     public class Game
     {
@@ -70,8 +68,6 @@ namespace Engine
             handeler = new EventHandeler();
 
             level = new Level();
-            level.SharedMaterials.Add(new Material("test", ContentPipe.LoadTexture("test.png")));
-            Debug.Log(level.Save());
 
             GL.ClearColor(Color.Blue);
         }

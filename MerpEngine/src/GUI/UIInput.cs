@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Text;
 using Rectangle = System.Drawing.Rectangle;
 
-namespace Engine.GUI
+namespace MerpEngine.GUI
 {
     public class UIInput : UI
     {

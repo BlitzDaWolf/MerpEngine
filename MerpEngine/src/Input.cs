@@ -4,7 +4,7 @@ using System.Text;
 using OpenTK;
 using OpenTK.Input;
 
-namespace Engine
+namespace MerpEngine
 {
     public class Input
     {

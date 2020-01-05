@@ -1,8 +1,8 @@
-﻿using Engine.Renderes;
+﻿using MerpEngine.Renderes;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Engine
+namespace MerpEngine
 {
     public class Level
     {
