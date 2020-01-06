@@ -20,4 +20,4 @@ jobs:
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1
     - name: Nuget Push
-      run: nuget push *.nupkg -k oy2nbhity7ry5j7hljiqcdkknuyeiqmedbnziy2c3c52qm -s https://www.nuget.org
+      run: nuget push *.nupkg --api-key oy2nbhity7ry5j7hljiqcdkknuyeiqmedbnziy2c3c52qm --source https://www.nuget.org
