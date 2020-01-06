@@ -74,11 +74,7 @@ namespace MerpEngine
         }
         public void ApplyTransform()
         {
-            Matrix4 transform = ProjectionMatrix();/* Matrix4.Identity;
-
-            transform = Matrix4.Mult(transform, Matrix4.CreateTranslation(-position.X, -position.Y, 0));
-            transform = Matrix4.Mult(transform, Matrix4.CreateRotationZ((float)-rotation));
-            transform = Matrix4.Mult(transform, Matrix4.CreateScale((float)zoom, (float)zoom, 1.0f));*/
+            Matrix4 transform = ProjectionMatrix();
 
             GL.MultMatrix(ref transform);
         }

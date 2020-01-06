@@ -90,6 +90,10 @@ namespace MerpEngine
             Input.Update();
             level.Update();
 
+            Debug.Log(Input.MousePosition);
+            Debug.Log(Camera.Main.ToWorld(Input.MousePosition));
+            Debug.Log(Camera.Main.Position);
+
             if (sw.ElapsedMilliseconds > (1 * 1000))
             {
                 frameCount = frames;

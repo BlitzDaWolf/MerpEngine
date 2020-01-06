@@ -16,4 +16,14 @@
     <ProjectReference Include="..\MerpEngine\MerpEngine.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Content\100x.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
