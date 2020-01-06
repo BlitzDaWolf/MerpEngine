@@ -1,6 +1,10 @@
 name: 'Setup .NET Core SDK'
 
-on: [push]
+on: 
+  create:
+  push:
+    tags:
+      - v*
 
 jobs:
   build:
@@ -15,3 +19,10 @@ jobs:
         dotnet-version: 3.1.100
     - name: Build with dotnet
       run: dotnet build --configuration Release
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        # Artifact name
+        name: data
+        # Directory containing files to upload
+        path: /home/runner/work/MerpEngine/MerpEngine/MerpEngineExample/bin/Release/netcoreapp3.1/MerpEngineExample.dll
