@@ -1,4 +1,5 @@
 ﻿using MerpEngine.Renderes;
+using OpenTK;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,6 +24,10 @@ namespace MerpEngine
 
         public string Save() => Newtonsoft.Json.JsonConvert.SerializeObject(this);
         internal void Destroy() => compoments.ForEach(x => x.Destroy());
-        internal void Start() => compoments.ForEach(x => x.Start());
+        internal void Start()
+        {
+            Camera.Main.SetPosition(Vector2.Zero);
+            compoments.ForEach(x => x.Start());
+        }
     }
 }

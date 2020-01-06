@@ -16,7 +16,6 @@ namespace MerpEngineTests
             Assert.AreEqual(Screen.Width, 800);
         }
 
-
         [Test]
         public void CorrectHeigth()
         {
