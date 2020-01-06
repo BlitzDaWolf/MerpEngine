@@ -1,16 +1,14 @@
 name: 'Setup .NET Core SDK'
 
 on: 
-  create:
   push:
-    tags:
-      - v*
+    branches: 
+      - master
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    name: build
     steps:
     - uses: actions/checkout@v1
     - name: Setup .NET Core
@@ -19,10 +17,14 @@ jobs:
         dotnet-version: 3.1.100
     - name: Build with dotnet
       run: dotnet build --configuration Release
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        # Artifact name
-        name: data
-        # Directory containing files to upload
-        path: /home/runner/work/MerpEngine/MerpEngine/MerpEngineExample/bin/Release/netcoreapp3.1/MerpEngineExample.dll
+    - name: test code
+      run: dotnet test
+  publish:
+    name: publish to nuget
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish NuGet
+        uses: rohith/publish-nuget@v1.2.0
+        with:
+          # API key for the NuGet feed
+          nuget_key: oy2jbqtacvs3ibc6flhqv2zh6ywnq7terjwufqwizjyr7u # optional
