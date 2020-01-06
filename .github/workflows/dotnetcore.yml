@@ -18,7 +18,7 @@ jobs:
     - name: Test with dotnet
       run: dotnet test
     - name: Publish NuGet
-      uses: rohith/publish-nuget@v1
+      uses: rohith/publish-nuget@v2
       with:
         # Project (csproj) directory path relative from the root of repository
         project_dir: . # optional, default is .
