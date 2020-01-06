@@ -19,3 +19,5 @@ jobs:
       run: dotnet test
     - name: Setup Nuget.exe
       uses: warrenbuckley/Setup-Nuget@v1
+    - name: Nuget Push
+      run: nuget push *.nupkg
