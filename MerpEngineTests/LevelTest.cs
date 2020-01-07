@@ -14,12 +14,19 @@ namespace MerpEngineTests
         public void Setup()
         {
             level = new Level() { Name = "test" };
+            level.compoments.Add(new testCompoment());
         }
 
         [Test]
         public void CorrectName()
         {
-            Assert.AreEqual(level.Name, "test");
+            Assert.AreEqual("test", level.Name);
+        }
+
+        [Test]
+        public void HasCompoments()
+        {
+            Assert.AreEqual(1, level.compoments.Count);
         }
     }
 }
