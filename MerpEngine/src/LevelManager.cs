@@ -33,15 +33,9 @@ namespace MerpEngine
             }
         }
 
-        private static void SetLevel()
-        {
-            LaodedLevel = Newtonsoft.Json.JsonConvert.DeserializeObject<Level>(Levels[loadedLevel].Save());
-        }
+        private static void SetLevel() => LaodedLevel = ContentPipe.GetLevelCopy(Levels[loadedLevel]);
 
-        public static void Peek()
-        {
-            Debug.Log(LaodedLevel.Save());
-        }
+        public static void Peek() => Debug.Log(LaodedLevel.Save());
 
         public static void LoadLevel(int number)
         {

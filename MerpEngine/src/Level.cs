@@ -26,6 +26,11 @@ namespace MerpEngine
         internal void Destroy() => compoments.ForEach(x => x.Destroy());
         internal void Start()
         {
+            SharedMaterials.ForEach(x =>
+            {
+                x.texture = Material.Materials[x.name].texture;
+            });
+
             Camera.Main.SetPosition(Vector2.Zero);
             compoments.ForEach(x => x.Start());
         }

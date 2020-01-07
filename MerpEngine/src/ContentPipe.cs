@@ -68,5 +68,27 @@ namespace MerpEngine
                 return null;
             }
         }
+
+        private static MemoryStream seriliazeObject(Level obj)
+        {
+            MemoryStream stream = new MemoryStream();
+            BinaryFormatter formmater = new BinaryFormatter();
+            formmater.Serialize(stream, obj);
+            return stream;
+        }
+
+        private static object DeserializeFromStream(MemoryStream stream)
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            stream.Seek(0, SeekOrigin.Begin);
+            object objectType = formatter.Deserialize(stream);
+            return objectType;
+        }
+
+        public static Level GetLevelCopy(Level level)
+        {
+            MemoryStream stream = seriliazeObject(level);
+            return (Level)DeserializeFromStream(stream);
+        }
     }
 }
