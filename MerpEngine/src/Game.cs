@@ -88,7 +88,8 @@ namespace MerpEngine
             handeler.Update();
             view.Update();
             Input.Update();
-            level.Update();
+            LevelManager.LaodedLevel.Update();
+            // level.Update();
 
             if (sw.ElapsedMilliseconds > (1 * 1000))
             {

@@ -10,6 +10,7 @@ namespace MerpEngine
     [Serializable]
     public class Level
     {
+        public string pathName = "";
         public string Name = "";
         public List<Material> SharedMaterials = new List<Material>();
         public List<Compoment> compoments = new List<Compoment>();
@@ -20,7 +21,10 @@ namespace MerpEngine
         public void AddSprite(Sprite spr) => spriteMap.sprites.Add(spr);
 
         internal void Render() => spriteMap.Render();
-        internal void Update() => compoments.ForEach(i => i.Update());
+        internal void Update()
+        {
+            compoments.ForEach(i => i.Update());
+        }
 
         public string Save() => Newtonsoft.Json.JsonConvert.SerializeObject(this);
         internal void Destroy() => compoments.ForEach(x => x.Destroy());
@@ -33,6 +37,11 @@ namespace MerpEngine
 
             Camera.Main.SetPosition(Vector2.Zero);
             compoments.ForEach(x => x.Start());
+        }
+
+        public Level Clone()
+        {
+            return new Level() { compoments = compoments, SharedMaterials = SharedMaterials, Name = Name, pathName = pathName };
         }
     }
 }
