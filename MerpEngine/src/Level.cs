@@ -1,4 +1,5 @@
-﻿using MerpEngine.Renderes;
+﻿using MerpEngine.Compoments;
+using MerpEngine.Renderes;
 using OpenTK;
 using System;
 using System.Collections.Generic;
@@ -20,11 +21,22 @@ namespace MerpEngine
         public List<Sprite> GetSprite(int x, int y) => spriteMap.GetSprite(x, y).OrderBy(i => i.RenderOrder).ToList();
         public void AddSprite(Sprite spr) => spriteMap.sprites.Add(spr);
 
-        internal void Render() => spriteMap.Render();
+        internal void Render()
+        {
+            var v = compoments
+                .Where(x => 
+                    x is SpriteCompoment)
+                .Select(x =>
+                    (SpriteCompoment)x)
+                .ToList();
+            foreach (var item in v) item.Render();
+        }
         internal void Update()
         {
             compoments.ForEach(i => i.Update());
         }
+
+        public Compoment GetCompoment(string name) => compoments.FirstOrDefault(x => x.Name == name);
 
         public string Save() => Newtonsoft.Json.JsonConvert.SerializeObject(this);
         internal void Destroy() => compoments.ForEach(x => x.Destroy());
@@ -37,11 +49,6 @@ namespace MerpEngine
 
             Camera.Main.SetPosition(Vector2.Zero);
             compoments.ForEach(x => x.Start());
-        }
-
-        public Level Clone()
-        {
-            return new Level() { compoments = compoments, SharedMaterials = SharedMaterials, Name = Name, pathName = pathName };
         }
     }
 }

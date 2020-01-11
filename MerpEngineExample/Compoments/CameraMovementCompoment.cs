@@ -1,4 +1,5 @@
 ﻿using MerpEngine;
+using MerpEngine.Compoments;
 using OpenTK;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,12 @@ namespace MerpEngineExample.Compoments
     {
         public float Speed { get; set; } = 2f;
 
+        public override void Start()
+        {
+        }
+
         public override void Update()
         {
-            Debug.Log(Camera.Main.Position);
-
             float horizontal = 0;
             float vertical = 0;
 

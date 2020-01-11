@@ -18,6 +18,7 @@ namespace MerpEngine
 
         public static void Start()
         {
+            new Camera(Vector2.Zero);
             Debug.Info($"Loading levels");
             LevelManager.loadLevels();
             Debug.Info($"loaded {LevelManager.Levels.Count} level's");
@@ -48,10 +49,10 @@ namespace MerpEngine
             window.Closing += Window_Closing;
             window.Resize += Window_Resize;
 
+            view = Camera.Main;
             Screen.Width = window.Width;
             Screen.Heigth = window.Height;
 
-            view = new Camera(Vector2.Zero);
             Input.Initialize(window);
         }
 
@@ -87,9 +88,10 @@ namespace MerpEngine
 
             handeler.Update();
             view.Update();
+
             Input.Update();
+            ContentPipe.loadMaterials();
             LevelManager.LaodedLevel.Update();
-            // level.Update();
 
             if (sw.ElapsedMilliseconds > (1 * 1000))
             {
@@ -116,7 +118,7 @@ namespace MerpEngine
 
 
             #region Sprites
-            level.Render();
+            LevelManager.LaodedLevel.Render();
             #endregion
 
             #region GUI

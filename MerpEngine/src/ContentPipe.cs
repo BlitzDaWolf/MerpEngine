@@ -1,5 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -7,8 +9,33 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MerpEngine
 {
-    public class ContentPipe
+    public static class ContentPipe
     {
+        private static Dictionary<string, Tuple<string, Action<Material>>> toLoadMaterial = new Dictionary<string, Tuple<string, Action<Material>>>();
+
+        internal static void loadMaterials()
+        {
+            foreach (string item in toLoadMaterial.Keys)
+            {
+                var tex = LoadTexture(toLoadMaterial[item].Item1);
+                Material m =  new Material(item, tex);
+                toLoadMaterial[item].Item2(m);
+            }
+            toLoadMaterial = new Dictionary<string, Tuple<string, Action<Material>>>();
+        }
+
+        public static void LoadMaterial(string name, string path, Action<Material> callback)
+        {
+            if (Material.Materials.ContainsKey(name))
+            {
+                callback(Material.Materials[name]);
+            }
+            else
+            {
+                toLoadMaterial.Add(name, new Tuple<string, Action<Material>>(path, callback));
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
