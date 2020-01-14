@@ -32,7 +32,18 @@ namespace MerpEngine
             }
             else
             {
-                toLoadMaterial.Add(name, new Tuple<string, Action<Material>>(path, callback));
+                if (toLoadMaterial.ContainsKey(name))
+                {
+                    Action<Material> newActions=new Action<Material>(callback);
+                    newActions += toLoadMaterial[name].Item2;
+                    toLoadMaterial[name] = new Tuple<string, Action<Material>>(toLoadMaterial[name].Item1, newActions);
+
+                    // toLoadMaterial[name].Item2 += callback;
+                }
+                else
+                {
+                    toLoadMaterial.Add(name, new Tuple<string, Action<Material>>(path, callback));
+                }
             }
         }
 
@@ -114,6 +125,12 @@ namespace MerpEngine
 
         public static Level GetLevelCopy(Level level)
         {
+            Level l = new Level();
+            l.compoments = level.compoments.ToList();
+            l.Name = level.Name;
+            l.GameObjects = level.GameObjects;
+            return l;
+
             MemoryStream stream = seriliazeObject(level);
             return (Level)DeserializeFromStream(stream);
         }

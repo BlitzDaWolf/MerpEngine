@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MerpEngine;
+﻿using MerpEngine;
+using System;
 
 namespace MerpEngineExample
 {

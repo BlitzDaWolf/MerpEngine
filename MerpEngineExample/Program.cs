@@ -1,10 +1,6 @@
 ﻿using MerpEngine;
 using MerpEngine.Compoments;
 using MerpEngineExample.Compoments;
-using System;
-using System.Diagnostics;
-using System.Threading;
-using Debug = MerpEngine.Debug;
 
 namespace MerpEngineExample
 {
@@ -12,17 +8,22 @@ namespace MerpEngineExample
     {
         static void Main(string[] args)
         {
+           /* GameObject go = new GameObject();
+            go.Name = "test";
+
+            Level l = new Level() { Name = "level 1" };
+            go.Position = new OpenTK.Vector2(10, 0);
+            go.AddCompoment<CameraMovement>();
+            SpriteCompoment sc = go.AddCompoment<SpriteCompoment>();
+            sc.meshName = "test";
+            sc.pathName = "test.png";
+            sc.LoadNewSprite("test", "test.png");
+            l.GameObjects.Add(go);
+            ContentPipe.SaveLevel(l, "levels/level1.lvl");*/
+
             Arguments.SetEnviroments(args);
 
-            Stopwatch sw = Stopwatch.StartNew();
-            ContentPipe.toLoadMaterial.Add("tt", new Tuple<string, Action<Material>>("test.png", (Material m) => {
-                sw.Stop();
-                Debug.Log(sw.ElapsedMilliseconds / 100);
-            }));
-
             Game.Start();
-
-            // ContentPipe.SaveLevel(LevelManager.Levels[0], "level1");
         }
     }
 }

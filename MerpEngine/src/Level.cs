@@ -13,27 +13,17 @@ namespace MerpEngine
     {
         public string pathName = "";
         public string Name = "";
-        public List<Material> SharedMaterials = new List<Material>();
+
         public List<Compoment> compoments = new List<Compoment>();
-        [NonSerialized]
-        private SpriteMap spriteMap = new SpriteMap() { GridSize = 64 };
-
-        public List<Sprite> GetSprite(int x, int y) => spriteMap.GetSprite(x, y).OrderBy(i => i.RenderOrder).ToList();
-        public void AddSprite(Sprite spr) => spriteMap.sprites.Add(spr);
-
+        public List<GameObject> GameObjects { get; set; } = new List<GameObject>();
+        
         internal void Render()
         {
-            var v = compoments
-                .Where(x => 
-                    x is SpriteCompoment)
-                .Select(x =>
-                    (SpriteCompoment)x)
-                .ToList();
-            foreach (var item in v) item.Render();
+            GameObjects.ForEach(i => i.Render());
         }
         internal void Update()
         {
-            compoments.ForEach(i => i.Update());
+            GameObjects.ForEach(i => i.Update());
         }
 
         public Compoment GetCompoment(string name) => compoments.FirstOrDefault(x => x.Name == name);
@@ -42,13 +32,8 @@ namespace MerpEngine
         internal void Destroy() => compoments.ForEach(x => x.Destroy());
         internal void Start()
         {
-            SharedMaterials.ForEach(x =>
-            {
-                x.texture = Material.Materials[x.name].texture;
-            });
-
             Camera.Main.SetPosition(Vector2.Zero);
-            compoments.ForEach(x => x.Start());
+            GameObjects.ForEach(x => x.Start());
         }
     }
 }
