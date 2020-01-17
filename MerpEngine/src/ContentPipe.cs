@@ -11,6 +11,9 @@ namespace MerpEngine
 {
     public static class ContentPipe
     {
+        public const string LEVEL_EXSTENTION = ".lvl";
+        public const string INPUT_EXSTENTION = ".json";
+
         private static Dictionary<string, Tuple<string, Action<Material>>> toLoadMaterial = new Dictionary<string, Tuple<string, Action<Material>>>();
 
         internal static void loadMaterials()
@@ -37,8 +40,6 @@ namespace MerpEngine
                     Action<Material> newActions=new Action<Material>(callback);
                     newActions += toLoadMaterial[name].Item2;
                     toLoadMaterial[name] = new Tuple<string, Action<Material>>(toLoadMaterial[name].Item1, newActions);
-
-                    // toLoadMaterial[name].Item2 += callback;
                 }
                 else
                 {
@@ -123,16 +124,23 @@ namespace MerpEngine
             return objectType;
         }
 
-        public static Level GetLevelCopy(Level level)
-        {
-            Level l = new Level();
-            l.compoments = level.compoments.ToList();
-            l.Name = level.Name;
-            l.GameObjects = level.GameObjects;
-            return l;
+        public static Level GetLevelCopy(Level level) => (Level)DeserializeFromStream(seriliazeObject(level));
 
-            MemoryStream stream = seriliazeObject(level);
-            return (Level)DeserializeFromStream(stream);
+        public static void SaveInput()
+        {
+            File.WriteAllText("settings/Input" + INPUT_EXSTENTION,Newtonsoft.Json.JsonConvert.SerializeObject(AxiesManager.instance, Newtonsoft.Json.Formatting.Indented));
+        }
+
+        public static void LoadInput()
+        {
+            try
+            {
+                AxiesManager.instance = Newtonsoft.Json.JsonConvert.DeserializeObject<AxiesManager>(File.ReadAllText("settings/Input" + INPUT_EXSTENTION));
+            }
+            catch (Exception ex) {
+                AxiesManager ax = new AxiesManager();
+                Debug.Error(ex);
+            }
         }
     }
 }

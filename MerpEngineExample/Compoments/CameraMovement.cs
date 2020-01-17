@@ -11,34 +11,17 @@ namespace MerpEngineExample.Compoments
 
         public override void Start()
         {
+            Debug.Log("Hello world!");
         }
 
         public override void Update()
         {
-            Debug.Log(Camera.Main.Position);
-            float horizontal = 0;
-            float vertical = 0;
+            Vector2 speed = AxiesManager.Get2DAxies("Movement");
 
-            if (Input.KeyDown(OpenTK.Input.Key.W))
+            if (speed != Vector2.Zero)
             {
-                horizontal = 1;
+                Camera.Main.Translate(speed);
             }
-            else if (Input.KeyDown(OpenTK.Input.Key.S))
-            {
-                horizontal = -1;
-            }
-
-            if (Input.KeyDown(OpenTK.Input.Key.D))
-            {
-                vertical = 1;
-            }
-            else if (Input.KeyDown(OpenTK.Input.Key.A))
-            {
-                vertical = -1;
-            }
-
-            Vector2 speed = new Vector2(horizontal, vertical);
-            Camera.Main.SetPosition(Camera.Main.Position + (speed * Time.DeltaTime));
         }
     }
 }

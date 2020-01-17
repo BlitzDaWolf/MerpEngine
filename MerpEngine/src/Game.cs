@@ -25,6 +25,12 @@ namespace MerpEngine
 
             Thread t = new Thread(() =>
             {
+                Debug.Info("Loading inputs");
+                ContentPipe.LoadInput();
+
+                Debug.Info($"Loaded: {AxiesManager.instance.Axies.Count} Axies");
+                Debug.Info($"Loaded: {AxiesManager.instance.Axies2D.Count} 2D axies");
+
                 Debug.Info("Starting game client");
                 Debug.Info($"Starting game with [{Screen.Width}, {Screen.Heigth}]");
 

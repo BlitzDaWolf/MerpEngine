@@ -35,39 +35,21 @@ namespace MerpEngine
 
         public void Update()
         {
-            float x = 0;
-            float y = 0;
-            if (Input.KeyDown(OpenTK.Input.Key.W))
-            {
-                y = -1;
-            }
-            else if (Input.KeyDown(OpenTK.Input.Key.S))
-            {
-                y = 1;
-            }
-
-            if (Input.KeyDown(OpenTK.Input.Key.D))
-            {
-                x = 1;
-            }
-            else if (Input.KeyDown(OpenTK.Input.Key.A))
-            {
-                x = -1;
-            }
-
-            Vector2 movement = (new Vector2(x, y) * 100) * Time.DeltaTime;
-            SetPosition(position + movement);
         }
         public void SetPosition(Vector2 newPosition)
         {
             this.position = newPosition;
+        }
+        public void Translate(Vector2 vector2)
+        {
+            position += vector2;
         }
         public Matrix4 ProjectionMatrix()
         {
             Matrix4 transform = Matrix4.Identity;
 
             transform = Matrix4.Mult(transform, Matrix4.CreateTranslation(-position.X, -position.Y, 0));
-            transform = Matrix4.Mult(transform, Matrix4.CreateRotationZ((float)-rotation));
+            // transform = Matrix4.Mult(transform, Matrix4.CreateRotationZ((float)-rotation));
             transform = Matrix4.Mult(transform, Matrix4.CreateScale((float)zoom, (float)zoom, 1.0f));
 
             return transform;

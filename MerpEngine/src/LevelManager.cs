@@ -8,14 +8,14 @@ namespace MerpEngine
     public static class LevelManager
     {
         public static List<Level> Levels = new List<Level>();
-        public static Level LaodedLevel;
+        internal static Level LaodedLevel;
         public static int loadedLevel { get; private set; } = 0;
 
         public static void loadLevels()
         {
             if (Directory.Exists("levels"))
             {
-                string[] lvl = Directory.GetFiles("levels", "*.lvl");
+                string[] lvl = Directory.GetFiles("levels", $"*{ContentPipe.LEVEL_EXSTENTION}");
                 for (int i = 0; i < lvl.Length; i++)
                 {
                     Levels.Add(ContentPipe.LoadLevel(lvl[i]));
