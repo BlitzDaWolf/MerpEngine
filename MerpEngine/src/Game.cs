@@ -1,5 +1,4 @@
-﻿using MerpEngine.GUI;
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Diagnostics;
@@ -11,7 +10,6 @@ namespace MerpEngine
     public class Game
     {
         public GameWindow window;
-        EventHandeler handeler;
         Camera view;
 
         Level level;
@@ -72,8 +70,6 @@ namespace MerpEngine
 
         private void Window_Load(object sender, EventArgs e)
         {
-            handeler = new EventHandeler();
-
             level = new Level();
 
             GL.ClearColor(Color.Blue);
@@ -92,7 +88,6 @@ namespace MerpEngine
         {
             Time.deltaTime = (float)e.Time;
 
-            handeler.Update();
             view.Update();
 
             Input.Update();
@@ -125,10 +120,6 @@ namespace MerpEngine
 
             #region Sprites
             LevelManager.LaodedLevel.Render();
-            #endregion
-
-            #region GUI
-            handeler.Render();
             #endregion
 
             frames++;
