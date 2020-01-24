@@ -10,16 +10,17 @@ namespace MerpEngine
         public static void Draw(
             Texture2D texture,
             Vector2 position,
-            Vector2 cale,
+            Vector2 scale,
             Vector2 origin,
+            int index = -2,
             RectangleF? sourceRec = null)
         {
-            Vector2[] vericies = new Vector2[4]
+            Vector3[] vericies = new Vector3[4]
             {
-                new Vector2(0,0),
-                new Vector2(1,0),
-                new Vector2(1,1),
-                new Vector2(0,1)
+                new Vector3(0, 0, index),
+                new Vector3(1, 0, index),
+                new Vector3(1, 1, index),
+                new Vector3(0, 1, index)
             };
 
             GL.BindTexture(TextureTarget.Texture2D, texture.ID);
@@ -28,7 +29,7 @@ namespace MerpEngine
             for (int i = 0; i < 4; i++)
             {
                 if (sourceRec == null)
-                    GL.TexCoord2(vericies[i]);
+                    GL.TexCoord2(vericies[i].X, vericies[i].Y);
                 else
                 {
                     GL.TexCoord2(
@@ -38,11 +39,11 @@ namespace MerpEngine
 
                 vericies[i].X *= (sourceRec == null) ? texture.Width : sourceRec.Value.Width;
                 vericies[i].Y *= (sourceRec == null) ? texture.Heigth : sourceRec.Value.Height;
-                vericies[i] -= origin;
-                vericies[i] *= cale;
-                vericies[i] += position;
+                vericies[i] -= new Vector3(origin);
+                vericies[i] *= new Vector3(scale);
+                vericies[i] += new Vector3(position);
 
-                GL.Vertex2(vericies[i]);
+                GL.Vertex2(vericies[i].X, vericies[i].Y);
             }
             GL.End();
         }

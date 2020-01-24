@@ -21,6 +21,10 @@ namespace MerpEngineExample
             AxiesManager.instance.Axies.Add("Escape", new Axies() { PositiveKey = OpenTK.Input.Key.Escape });
             ContentPipe.SaveInput();
 
+            Level l = new Level();
+
+            l.compoments.Add(new SpriteCompoment() { RenderIndex = 0 });
+
             Arguments.SetEnviroments(args);
 
             Game.Start();

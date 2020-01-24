@@ -19,14 +19,37 @@ namespace MerpEngine
         
         internal void Render()
         {
-            GameObjects.ForEach(i => i.Render());
+            List<SpriteCompoment> spriteRenderes = new List<SpriteCompoment>();
+
+            GetGameObjectsWithType<SpriteCompoment>()
+                .ToList()
+                .ForEach(x => spriteRenderes
+                    .Add(
+                        x.GetCompoment<SpriteCompoment>()));
+
+            spriteRenderes = spriteRenderes.OrderBy(x => x.RenderIndex).ToList();
+            spriteRenderes.ForEach(x => x.Render());
         }
         internal void Update()
         {
             GameObjects.ForEach(i => i.Update());
         }
 
-        public Compoment GetCompoment(string name) => compoments.FirstOrDefault(x => x.Name == name);
+        public GameObject GetGameObject(string name) => GameObjects.FirstOrDefault(x => x.Name == name);
+        public GameObject[] GetGameObjects(string name) => GameObjects.Where(x => x.Name == name).ToArray();
+
+        public GameObject[] GetGameObjectsWithType<T>() where T : Compoment
+        {
+            List<GameObject> objects = new List<GameObject>();
+            foreach (var item in GameObjects)
+            {
+                if(item.GetType() == typeof(T))
+                {
+                    objects.Add(item);
+                }
+            }
+            return objects.ToArray();
+        }
 
         public string Save() => Newtonsoft.Json.JsonConvert.SerializeObject(this);
         internal void Destroy() => compoments.ForEach(x => x.Destroy());

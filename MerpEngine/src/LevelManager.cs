@@ -8,7 +8,8 @@ namespace MerpEngine
     public static class LevelManager
     {
         public static List<Level> Levels = new List<Level>();
-        internal static Level LaodedLevel;
+        public static Level LoadedLevel => _LaodedLevel;
+        internal static Level _LaodedLevel;
         public static int loadedLevel { get; private set; } = 0;
 
         public static void loadLevels()
@@ -35,20 +36,20 @@ namespace MerpEngine
 
         private static void SetLevel()
         {
-            LaodedLevel = ContentPipe.GetLevelCopy(Levels[loadedLevel]);
-            LaodedLevel.Start();
+            _LaodedLevel = ContentPipe.GetLevelCopy(Levels[loadedLevel]);
+            _LaodedLevel.Start();
         }
 
-        public static void Peek() => Debug.Log(LaodedLevel.Save());
+        public static void Peek() => Debug.Log(_LaodedLevel.Save());
 
         public static void LoadLevel(int number)
         {
             if(number != loadedLevel)
             {
-                LaodedLevel.Destroy();
+                _LaodedLevel.Destroy();
                 loadedLevel = number;
                 SetLevel();
-                LaodedLevel.Start();
+                _LaodedLevel.Start();
             }
         }
     }

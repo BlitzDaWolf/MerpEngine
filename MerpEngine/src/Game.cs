@@ -92,7 +92,7 @@ namespace MerpEngine
 
             Input.Update();
             ContentPipe.loadMaterials();
-            LevelManager.LaodedLevel.Update();
+            LevelManager._LaodedLevel.Update();
 
             if (sw.ElapsedMilliseconds > (1 * 1000))
             {
@@ -119,7 +119,7 @@ namespace MerpEngine
 
 
             #region Sprites
-            LevelManager.LaodedLevel.Render();
+            LevelManager._LaodedLevel.Render();
             #endregion
 
             frames++;

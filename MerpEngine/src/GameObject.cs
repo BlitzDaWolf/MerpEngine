@@ -38,5 +38,10 @@ namespace MerpEngine
             Compoments.Add(newObject);
             return newObject;
         }
+
+        public T GetCompoment<T>() where T : Compoment
+        {
+            return Compoments.Find(x => x.GetType() == typeof(T)) as T;
+        }
     }
 }

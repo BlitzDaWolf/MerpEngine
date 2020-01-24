@@ -29,4 +29,8 @@
     <Folder Include="levels\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MerpEngine" Version="1.1.1.1" />
+  </ItemGroup>
+
 </Project>

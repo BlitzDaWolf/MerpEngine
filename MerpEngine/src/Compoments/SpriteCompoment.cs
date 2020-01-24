@@ -15,7 +15,9 @@ namespace MerpEngine.Compoments
         [NonSerialized]
         public Sprite sprite;
 
-        public void Render()
+        public int RenderIndex = 0;
+
+        public virtual void Render()
         {
             if (sprite == null) return;
             if (sprite.Material == null) return;
