@@ -15,7 +15,6 @@ namespace MerpEngine
         public Vector2 Position { get; set; }
 
         public List<Compoment> Compoments = new List<Compoment>();
-
         internal void Update() => Compoments.ForEach(i => i.Update());
 
         internal void Render()
@@ -43,5 +42,7 @@ namespace MerpEngine
         {
             return Compoments.Find(x => x.GetType() == typeof(T)) as T;
         }
+
+        public bool HasCompoment<T>() where T : Compoment => GetCompoment<T>() != null;
     }
 }

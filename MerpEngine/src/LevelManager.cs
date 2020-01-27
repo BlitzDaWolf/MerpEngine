@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace MerpEngine
 {
@@ -22,7 +20,7 @@ namespace MerpEngine
                     Levels.Add(ContentPipe.LoadLevel(lvl[i]));
                 }
             }
-            if(Levels.Count > 0)
+            if (Levels.Count > 0)
             {
                 loadedLevel = 0;
                 SetLevel();
@@ -44,7 +42,7 @@ namespace MerpEngine
 
         public static void LoadLevel(int number)
         {
-            if(number != loadedLevel)
+            if (number != loadedLevel)
             {
                 _LaodedLevel.Destroy();
                 loadedLevel = number;

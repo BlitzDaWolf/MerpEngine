@@ -1,6 +1,5 @@
 ﻿using OpenTK.Graphics.OpenGL;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -21,7 +20,7 @@ namespace MerpEngine
             foreach (string item in toLoadMaterial.Keys)
             {
                 var tex = LoadTexture(toLoadMaterial[item].Item1);
-                Material m =  new Material(item, tex);
+                Material m = new Material(item, toLoadMaterial[item].Item1, tex);
                 toLoadMaterial[item].Item2(m);
             }
             toLoadMaterial = new Dictionary<string, Tuple<string, Action<Material>>>();
@@ -37,7 +36,7 @@ namespace MerpEngine
             {
                 if (toLoadMaterial.ContainsKey(name))
                 {
-                    Action<Material> newActions=new Action<Material>(callback);
+                    Action<Material> newActions = new Action<Material>(callback);
                     newActions += toLoadMaterial[name].Item2;
                     toLoadMaterial[name] = new Tuple<string, Action<Material>>(toLoadMaterial[name].Item1, newActions);
                 }
@@ -128,7 +127,7 @@ namespace MerpEngine
 
         public static void SaveInput()
         {
-            File.WriteAllText("settings/Input" + INPUT_EXSTENTION,Newtonsoft.Json.JsonConvert.SerializeObject(AxiesManager.instance, Newtonsoft.Json.Formatting.Indented));
+            File.WriteAllText("settings/Input" + INPUT_EXSTENTION, Newtonsoft.Json.JsonConvert.SerializeObject(AxiesManager.instance, Newtonsoft.Json.Formatting.Indented));
         }
 
         public static void LoadInput()
@@ -137,7 +136,8 @@ namespace MerpEngine
             {
                 AxiesManager.instance = Newtonsoft.Json.JsonConvert.DeserializeObject<AxiesManager>(File.ReadAllText("settings/Input" + INPUT_EXSTENTION));
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 AxiesManager ax = new AxiesManager();
                 Debug.Error(ex);
             }

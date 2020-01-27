@@ -1,7 +1,9 @@
 ﻿using OpenTK;
+using System;
 
 namespace MerpEngine.Renderes
 {
+    [Serializable]
     public class Sprite
     {
         public int sizePerPixel = 256;

@@ -1,9 +1,7 @@
 ﻿using MerpEngine.Compoments;
-using MerpEngine.Renderes;
 using OpenTK;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace MerpEngine
@@ -16,7 +14,7 @@ namespace MerpEngine
 
         public List<Compoment> compoments = new List<Compoment>();
         public List<GameObject> GameObjects { get; set; } = new List<GameObject>();
-        
+
         internal void Render()
         {
             List<SpriteCompoment> spriteRenderes = new List<SpriteCompoment>();
@@ -43,7 +41,7 @@ namespace MerpEngine
             List<GameObject> objects = new List<GameObject>();
             foreach (var item in GameObjects)
             {
-                if(item.GetType() == typeof(T))
+                if (item.HasCompoment<T>())
                 {
                     objects.Add(item);
                 }
@@ -55,6 +53,19 @@ namespace MerpEngine
         internal void Destroy() => compoments.ForEach(x => x.Destroy());
         internal void Start()
         {
+            List<SpriteCompoment> spriteRenderes = new List<SpriteCompoment>();
+
+            GetGameObjectsWithType<SpriteCompoment>()
+                .ToList()
+                .ForEach(x => spriteRenderes
+                    .Add(
+                        x.GetCompoment<SpriteCompoment>()));
+
+            spriteRenderes.ForEach(x =>
+            {
+                x.sprite.Material.Reload();
+            });
+
             Camera.Main.SetPosition(Vector2.Zero);
             GameObjects.ForEach(x => x.Start());
         }

@@ -7,5 +7,10 @@ namespace MerpEngine.GUI
     {
         public Rectangle UISize;
         public Rectangle UIPosition;
+
+        public UI()
+        {
+            RenderIndex = int.MaxValue;
+        }
     }
 }

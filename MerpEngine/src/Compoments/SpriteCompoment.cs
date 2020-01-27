@@ -1,8 +1,6 @@
 ﻿using MerpEngine.Renderes;
 using OpenTK;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MerpEngine.Compoments
 {
@@ -12,7 +10,6 @@ namespace MerpEngine.Compoments
         public string meshName = "";
         public string pathName = "";
 
-        [NonSerialized]
         public Sprite sprite;
 
         public int RenderIndex = 0;
@@ -21,7 +18,7 @@ namespace MerpEngine.Compoments
         {
             if (sprite == null) return;
             if (sprite.Material == null) return;
-            SpriteBatch.Draw(sprite.Material.texture, (Position * sprite.sizePerPixel) + sprite.Position, Scale * sprite.Size, Vector2.Zero);
+            SpriteBatch.Draw(sprite.Material.texture, (Position + GameObject.Position) * sprite.sizePerPixel, Scale, Vector2.Zero);
         }
 
         public override void Start()

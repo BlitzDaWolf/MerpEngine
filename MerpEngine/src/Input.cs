@@ -79,7 +79,7 @@ namespace MerpEngine
             buttonsDownLast = new List<MouseButton>(buttonsDown);
 
             mouseScrollWheel = (float)Math.Round(Vector2.Lerp(new Vector2(mouseScrollWheel, 0), Vector2.Zero, 0.5f).X, 5);
-            if(Math.Abs(mouseScrollWheel) < 0.0005)
+            if (Math.Abs(mouseScrollWheel) < 0.0005)
             {
                 mouseScrollWheel = 0;
             }
