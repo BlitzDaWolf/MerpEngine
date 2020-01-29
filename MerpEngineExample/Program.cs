@@ -23,14 +23,14 @@ namespace MerpEngineExample
 
             Level l = new Level();
 
-            ContentPipe.LoadMaterial("test", "test.png", (mat) => {
+            /*ContentPipe.LoadMaterial("test", "test.png", (mat) => {
 
                 {
                     GameObject go = new GameObject();
                     go.Position = new OpenTK.Vector2(0, 0);
                     var sc = go.AddCompoment<SpriteCompoment>();
                     sc.RenderIndex = 0;
-                    sc.sprite = new MerpEngine.Renderes.Sprite() { Material = mat };
+                    sc.sprite = new MerpEngine.Renderes.Sprite() { Material = mat, sizePerPixel = 128 };
                     l.GameObjects.Add(go);
                 }
 
@@ -43,14 +43,20 @@ namespace MerpEngineExample
                     go.Position = new OpenTK.Vector2(0.5f, 0.5f);
                     var sc = go.AddCompoment<SpriteCompoment>();
                     sc.RenderIndex = 1;
-                    sc.sprite = new MerpEngine.Renderes.Sprite() { Material = mat };
+                    sc.sprite = new MerpEngine.Renderes.Sprite() { Material = mat, sizePerPixel = 128 };
                     l.GameObjects.Add(go);
                 }
 
                 ContentPipe.SaveLevel(l, "levels/level1.lvl");
             });
 
-
+            {
+                GameObject go = new GameObject();
+                go.AddCompoment<MerpEngine.GUI.src.UIText>();
+                go.AddCompoment<CameraMovement>();
+                l.GameObjects.Add(go);
+                ContentPipe.SaveLevel(l, "levels/level1.lvl");
+            }*/
             Arguments.SetEnviroments(args);
 
             Game.Start();

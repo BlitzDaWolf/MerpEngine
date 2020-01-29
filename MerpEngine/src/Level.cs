@@ -63,6 +63,7 @@ namespace MerpEngine
 
             spriteRenderes.ForEach(x =>
             {
+                if (x.sprite == null) return;
                 x.sprite.Material.Reload();
             });
 

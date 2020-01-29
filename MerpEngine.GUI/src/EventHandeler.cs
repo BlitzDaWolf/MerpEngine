@@ -8,10 +8,7 @@ namespace MerpEngine.GUI
 {
     public class EventHandeler : SpriteCompoment
     {
-        public override void Update()
-        {
-
-        }
+        public override void Update() { }
 
         public bool isHovering(UI ui)
         {
@@ -23,13 +20,6 @@ namespace MerpEngine.GUI
             return (mousePosition.X < topLeft.X && mousePosition.Y < topLeft.Y) && (mousePosition.X > bottomRigth.X && mousePosition.Y > bottomRigth.Y);
         }
 
-        public override void Render()
-        {
-            var gameobjects = LevelManager.LoadedLevel.GetGameObjectsWithType<UI>();
-            foreach (var item in gameobjects)
-            {
-                item.GetCompoment<UI>();
-            }
-        }
+        public override void Render() { }
     }
 }

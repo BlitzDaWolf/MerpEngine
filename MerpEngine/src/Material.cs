@@ -26,6 +26,11 @@ namespace MerpEngine
             }
         }
 
+        public Material(Texture2D texture)
+        {
+            this.texture = texture;
+        }
+
         internal void Reload()
         {
             if (Materials.ContainsKey(name))

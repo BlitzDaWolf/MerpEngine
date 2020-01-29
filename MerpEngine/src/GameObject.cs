@@ -40,7 +40,7 @@ namespace MerpEngine
 
         public T GetCompoment<T>() where T : Compoment
         {
-            return Compoments.Find(x => x.GetType() == typeof(T)) as T;
+            return Compoments.Find(x => x is T) as T;
         }
 
         public bool HasCompoment<T>() where T : Compoment => GetCompoment<T>() != null;

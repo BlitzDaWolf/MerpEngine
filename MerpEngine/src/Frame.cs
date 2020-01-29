@@ -16,6 +16,6 @@ namespace MerpEngine
             frames.Enqueue(a);
         }
 
-        internal static float avg => frames.Count > 0 ? (float)frames.Average() : 0;
+        public static float avg => frames.Count > 0 ? (float)frames.Average() : 0;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MerpEngine;
+using MerpEngine.GUI.src;
 using System;
 
 namespace MerpEngineExample
@@ -7,5 +8,10 @@ namespace MerpEngineExample
     public class TestCompoment : Compoment
     {
         public string test = "Yeet";
+
+        public override void Start()
+        {
+
+        }
     }
 }

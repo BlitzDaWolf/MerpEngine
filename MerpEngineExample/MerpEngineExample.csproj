@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MerpEngine.GUI\MerpEngine.GUI.csproj" />
     <ProjectReference Include="..\MerpEngine\MerpEngine.csproj" />
   </ItemGroup>
 
@@ -27,10 +28,6 @@
   <ItemGroup>
     <Folder Include="Content\" />
     <Folder Include="levels\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MerpEngine" Version="1.1.1.1" />
   </ItemGroup>
 
 </Project>
