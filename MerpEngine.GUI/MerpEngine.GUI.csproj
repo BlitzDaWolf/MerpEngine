@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>The ui for MerpEngine</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/BlitzDaWolf/MerpEngine</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/BlitzDaWolf/MerpEngine</RepositoryUrl>
+    <RepositoryType>github</RepositoryType>
+    <PackageTags>gameengine 2D GUI</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

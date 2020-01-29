@@ -21,9 +21,9 @@ namespace MerpEngineExample
             {
                 try
                 {
-                    for (int x = 0; x < 50; x++)
+                    for (int x = 0; x < 100; x++)
                     {
-                        for (int y = 0; y < 50; y++)
+                        for (int y = 0; y < 100; y++)
                         {
                             GameObject go = new GameObject();
                             go.Position = new OpenTK.Vector2(x, y);
