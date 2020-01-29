@@ -6,7 +6,7 @@ namespace MerpEngine
     [Serializable]
     public class Material
     {
-        internal static Dictionary<string, Material> Materials = new Dictionary<string, Material>();
+        public static Dictionary<string, Material> Materials = new Dictionary<string, Material>();
 
         public string name;
         public string path;

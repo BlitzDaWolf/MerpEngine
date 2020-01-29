@@ -1,4 +1,5 @@
 ﻿using MerpEngine;
+using MerpEngine.Compoments;
 using MerpEngine.GUI.src;
 using System;
 
@@ -8,10 +9,58 @@ namespace MerpEngineExample
     public class TestCompoment : Compoment
     {
         public string test = "Yeet";
+        private bool succes;
 
         public override void Start()
         {
+        }
 
+        public override void Update()
+        {
+            if(succes == false)
+            {
+                try
+                {
+                    for (int x = 0; x < 50; x++)
+                    {
+                        for (int y = 0; y < 50; y++)
+                        {
+                            GameObject go = new GameObject();
+                            go.Position = new OpenTK.Vector2(x, y);
+                            
+                            if (y % 2 == 1)
+                            {
+                                if (x % 2 == 1)
+                                {
+                                    go.AddCompoment<SpriteCompoment>().sprite = new MerpEngine.Renderes.Sprite() { Material = Material.Materials["test"], sizePerPixel = 128 };
+                                }
+                                else
+                                {
+                                    go.AddCompoment<SpriteCompoment>().sprite = new MerpEngine.Renderes.Sprite() { Material = Material.Materials["test2"], sizePerPixel = 128 };
+                                }
+                            }
+                            else
+                            {
+
+                                if (x % 2 == 0)
+                                {
+                                    go.AddCompoment<SpriteCompoment>().sprite = new MerpEngine.Renderes.Sprite() { Material = Material.Materials["test"], sizePerPixel = 128 };
+                                }
+                                else
+                                {
+                                    go.AddCompoment<SpriteCompoment>().sprite = new MerpEngine.Renderes.Sprite() { Material = Material.Materials["test2"], sizePerPixel = 128 };
+                                }
+                            }
+                            LevelManager.LoadedLevel.GameObjects.Add(go);
+                        }
+                    }
+                    succes = true;
+                }
+                catch (Exception)
+                {
+                    Debug.Log("Err");
+                }
+            }
         }
     }
 }

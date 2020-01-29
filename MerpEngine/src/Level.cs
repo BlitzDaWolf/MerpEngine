@@ -30,7 +30,8 @@ namespace MerpEngine
         }
         internal void Update()
         {
-            GameObjects.ForEach(i => i.Update());
+            List<GameObject> GameObjectsCoppy = new List<GameObject>(GameObjects);
+            GameObjectsCoppy.ForEach(i => i.Update());
         }
 
         public GameObject GetGameObject(string name) => GameObjects.FirstOrDefault(x => x.Name == name);

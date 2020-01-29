@@ -44,7 +44,7 @@ namespace MerpEngineExample
 
             {
                 GameObject go = new GameObject();
-                go.Position = new OpenTK.Vector2(0.5f, 0);
+                go.Position = new OpenTK.Vector2(0, 0);
                 var sc = go.AddCompoment<SpriteCompoment>();
                 sc.RenderIndex = 0;
                 sc.sprite = new MerpEngine.Renderes.Sprite() { Material = new Material("test", "test.png"), sizePerPixel = 128 };
@@ -63,6 +63,7 @@ namespace MerpEngineExample
                 GameObject go = new GameObject();
                 go.AddCompoment<MerpEngine.GUI.src.UIText>();
                 go.AddCompoment<CameraMovement>();
+                go.AddCompoment<TestCompoment>();
                 l.GameObjects.Add(go);
             }
             ContentPipe.SaveLevel(l, "levels/level1.lvl");

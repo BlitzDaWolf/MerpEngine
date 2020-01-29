@@ -17,6 +17,11 @@ namespace MerpEngine.GUI
 
         }
 
+        public override void Start()
+        {
+            RenderIndex += 900;
+        }
+
         public override void Render()
         {
             if (sprite == null) return;
@@ -27,7 +32,7 @@ namespace MerpEngine.GUI
                 (Camera.Main.Position - (new Vector2(size.X / 2, size.Y / 2)))
                 +
                 GameObject.GlobalPosition,
-                Scale, Vector2.Zero, -1);
+                Scale, Vector2.Zero, -3);
         }
     }
 }

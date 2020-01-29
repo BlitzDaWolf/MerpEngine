@@ -18,6 +18,12 @@ namespace MerpEngine.Compoments
         {
             if (sprite == null) return;
             if (sprite.Material == null) return;
+
+            if (Vector2Extension.Distance(
+                Camera.Main.Position,
+                GameObject.GlobalPosition * sprite.sizePerPixel)
+                > Math.Max(Screen.Width, Screen.Heigth)) return;
+
             SpriteBatch.Draw(sprite.Material.texture, (Position + GameObject.GlobalPosition) * sprite.sizePerPixel, Scale, Vector2.Zero);
         }
 
