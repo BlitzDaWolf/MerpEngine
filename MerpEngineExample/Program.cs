@@ -1,6 +1,7 @@
 ﻿using MerpEngine;
 using MerpEngine.Compoments;
 using MerpEngineExample.Compoments;
+using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -11,55 +12,85 @@ namespace MerpEngineExample
         static void Main(string[] args)
         {
             ContentPipe.LoadInput();
+
+            bool info = true;
+
+            while (info)
+            {
+                Console.WriteLine($"L: Recreate level scene");
+                Console.WriteLine($"I: Recreate Input");
+                Console.WriteLine($"P: Start game");
+
+                DebugConsole.AddCommand("relevel", (a) => { RecreateLevel(); });
+                DebugConsole.AddCommand("reinput", (a) => { RecreateInputs(); });
+
+                ConsoleKeyInfo v = Console.ReadKey();
+
+                switch (v.Key)
+                {
+                    case ConsoleKey.L:
+                        RecreateLevel();
+                        break;
+                    case ConsoleKey.I:
+                        RecreateInputs();
+                        break;
+                    case ConsoleKey.P:
+                        info = false;
+                        break;
+                    default:
+                        break;
+                }
+                Console.Clear();
+            }
+
+            Arguments.SetEnviroments(args);
+
+            Game.Start();
+        }
+
+        static void RecreateInputs()
+        {
+            Debug.Log("Recreating input");
             AxiesManager.instance.Axies2D = new System.Collections.Generic.Dictionary<string, Axies2D>();
             AxiesManager.instance.Axies = new System.Collections.Generic.Dictionary<string, Axies>();
-            
+
             AxiesManager.instance.Axies2D.Add("Movement", new Axies2D() { Horizontal = "Horizontal", Vertical = "Vertical" });
 
             AxiesManager.instance.Axies.Add("Horizontal", new Axies() { PositiveKey = OpenTK.Input.Key.D, NegitiveKey = OpenTK.Input.Key.A });
             AxiesManager.instance.Axies.Add("Vertical", new Axies() { PositiveKey = OpenTK.Input.Key.W, NegitiveKey = OpenTK.Input.Key.S, Inverted = true });
             AxiesManager.instance.Axies.Add("Escape", new Axies() { PositiveKey = OpenTK.Input.Key.Escape });
             ContentPipe.SaveInput();
+        }
 
+        static void RecreateLevel()
+        {
+            Debug.Log("Recreating level");
             Level l = new Level();
 
-            /*ContentPipe.LoadMaterial("test", "test.png", (mat) => {
+            {
+                GameObject go = new GameObject();
+                go.Position = new OpenTK.Vector2(0.5f, 0);
+                var sc = go.AddCompoment<SpriteCompoment>();
+                sc.RenderIndex = 0;
+                sc.sprite = new MerpEngine.Renderes.Sprite() { Material = new Material("test", "test.png"), sizePerPixel = 128 };
+                l.GameObjects.Add(go);
 
-                {
-                    GameObject go = new GameObject();
-                    go.Position = new OpenTK.Vector2(0, 0);
-                    var sc = go.AddCompoment<SpriteCompoment>();
-                    sc.RenderIndex = 0;
-                    sc.sprite = new MerpEngine.Renderes.Sprite() { Material = mat, sizePerPixel = 128 };
-                    l.GameObjects.Add(go);
-                }
-
-                ContentPipe.SaveLevel(l, "levels/level1.lvl");
-            });
-            ContentPipe.LoadMaterial("test2", "test2.png", (mat) => {
-
-                {
-                    GameObject go = new GameObject();
-                    go.Position = new OpenTK.Vector2(0.5f, 0.5f);
-                    var sc = go.AddCompoment<SpriteCompoment>();
-                    sc.RenderIndex = 1;
-                    sc.sprite = new MerpEngine.Renderes.Sprite() { Material = mat, sizePerPixel = 128 };
-                    l.GameObjects.Add(go);
-                }
-
-                ContentPipe.SaveLevel(l, "levels/level1.lvl");
-            });
+                GameObject go2 = new GameObject();
+                go2.Position = new OpenTK.Vector2(1, 0);
+                var sc2 = go2.AddCompoment<SpriteCompoment>();
+                sc2.RenderIndex = 0;
+                sc2.sprite = new MerpEngine.Renderes.Sprite() { Material = new Material("test2", "test2.png"), sizePerPixel = 128 };
+                l.GameObjects.Add(go2);
+                go2.parrent = go;
+            }
 
             {
                 GameObject go = new GameObject();
                 go.AddCompoment<MerpEngine.GUI.src.UIText>();
                 go.AddCompoment<CameraMovement>();
                 l.GameObjects.Add(go);
-                ContentPipe.SaveLevel(l, "levels/level1.lvl");
-            }*/
-            Arguments.SetEnviroments(args);
-
-            Game.Start();
+            }
+            ContentPipe.SaveLevel(l, "levels/level1.lvl");
         }
     }
 }

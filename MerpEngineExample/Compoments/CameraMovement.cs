@@ -18,6 +18,11 @@ namespace MerpEngineExample.Compoments
         {
             Vector2 speed = AxiesManager.Get2DAxies("Movement");
 
+            if (Input.KeyPress(OpenTK.Input.Key.Q))
+            {
+                Application.Quit();
+            }
+
             if (speed != Vector2.Zero)
             {
                 Camera.Main.Translate(speed);

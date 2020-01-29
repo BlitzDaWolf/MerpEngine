@@ -5,6 +5,7 @@ namespace MerpEngine
 {
     public static class Frame
     {
+        public static int CurrentFrame { get; internal set; }
         internal static Queue<int> frames = new Queue<int>();
 
         internal static void AddFrame(int a)

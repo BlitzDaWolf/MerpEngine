@@ -15,11 +15,11 @@ namespace MerpEngine.GUI.src
         public string Text = "test";
         public string Font = "Arial";
 
-        public int Size = 64;
+        public int Size = 16;
 
         public int Width = 800;
         public int Heigth = 600;
-        public Color color = Color.Black;
+        public Color color = Color.Green;
 
         public bool ResizeWithScreen = true;
         #endregion
@@ -33,6 +33,8 @@ namespace MerpEngine.GUI.src
         public int _Width = 800;
         public int _Heigth = 600;
         public Color _color = Color.Black;
+
+        private Bitmap oldBitmap;
         #endregion
 
         public bool Changed { get; private set; } = true;
@@ -41,18 +43,19 @@ namespace MerpEngine.GUI.src
 
         private Bitmap GenerateText()
         {
+            if (oldBitmap != null)
+                oldBitmap.Dispose();
             Bitmap bmp = new Bitmap(Width, Heigth, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             Graphics gfx = Graphics.FromImage(bmp);
-
             SolidBrush drawBrush = new SolidBrush(color);
-
             StringFormat drawFormat = new StringFormat();
 
             gfx.DrawString(Text, _font, drawBrush, 0, 0, drawFormat);
             gfx.Dispose();
 
-            bmp.Save("test.png");
+            oldBitmap = bmp;
+
             return bmp;
         }
 
@@ -81,11 +84,17 @@ namespace MerpEngine.GUI.src
                 Heigth = Screen.Heigth;
             }
 
-            Text = $"FPS {(int)Frame.avg}";
+            Text = @$"{(int)Frame.avg}
+Camera: {Camera.Main.Position}";
 
             Check();
             if (Changed)
             {
+                if (sprite != null)
+                {
+                    ContentPipe.DisposeTexture(sprite.Material.texture.ID);
+                }
+
                 Texture2D tex2D = ContentPipe.LoadTexture(GenerateText());
 
                 Sprite spr = new Sprite() { Material = new Material(tex2D) };

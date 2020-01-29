@@ -82,12 +82,22 @@ namespace MerpEngine
             return new Texture2D(id, new OpenTK.Vector2(bmp.Width, bmp.Height));
         }
 
+        public static void DisposeTexture(int id)
+        {
+            GL.DeleteTexture(id);
+        }
+
         public static void SaveLevel(Level level, string path)
         {
             BinaryFormatter formmater = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Create);
             formmater.Serialize(stream, level);
             stream.Close();
+        }
+
+        public static void SaveJsonLevel(Level level, string path)
+        {
+            Debug.Log(Newtonsoft.Json.JsonConvert.SerializeObject(level));
         }
 
         public static Level LoadLevel(string path)

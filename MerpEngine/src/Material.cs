@@ -14,6 +14,12 @@ namespace MerpEngine
         [NonSerialized]
         public Texture2D texture;
 
+        public Material(string name, string path)
+        {
+            this.name = name;
+            this.path = path;
+        }
+
         public Material(string name, string path, Texture2D texture2D)
         {
             if (!Materials.ContainsKey(name))

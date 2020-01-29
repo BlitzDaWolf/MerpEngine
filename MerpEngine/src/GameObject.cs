@@ -11,8 +11,21 @@ namespace MerpEngine
     {
         internal Guid Id { get; set; }
 
+        public GameObject parrent;
+
         public string Name { get; set; }
         public Vector2 Position { get; set; }
+        public Vector2 GlobalPosition
+        {
+            get
+            {
+                if (parrent != null)
+                    return parrent.GlobalPosition + Position;
+                else
+                    return Position;
+            }
+        }
+
 
         public List<Compoment> Compoments = new List<Compoment>();
         internal void Update() => Compoments.ForEach(i => i.Update());

@@ -21,6 +21,7 @@ namespace MerpEngine
             LevelManager.loadLevels();
             Debug.Info($"loaded {LevelManager.Levels.Count} level's");
 
+            Application.Start();
             Thread t = new Thread(() =>
             {
                 Debug.Info("Loading inputs");
@@ -41,6 +42,7 @@ namespace MerpEngine
                 window.Run();
             });
             t.Start();
+            new DebugConsole();
         }
 
         public Game(GameWindow windowInput)
@@ -76,7 +78,7 @@ namespace MerpEngine
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            Application.Quit();
         }
 
         Stopwatch sw = Stopwatch.StartNew();
@@ -86,6 +88,11 @@ namespace MerpEngine
 
         private void Window_UpdateFrame(object sender, FrameEventArgs e)
         {
+            if (!Application.Running)
+            {
+                window.Close();
+            }
+
             Time.deltaTime = (float)e.Time;
 
             view.Update();
@@ -107,6 +114,7 @@ namespace MerpEngine
 
         private void Window_RenderFrame(object sender, FrameEventArgs e)
         {
+            Frame.CurrentFrame++;
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             GL.Enable(EnableCap.Texture2D);

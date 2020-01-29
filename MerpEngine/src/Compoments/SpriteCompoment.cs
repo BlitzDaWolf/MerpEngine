@@ -18,7 +18,7 @@ namespace MerpEngine.Compoments
         {
             if (sprite == null) return;
             if (sprite.Material == null) return;
-            SpriteBatch.Draw(sprite.Material.texture, (Position + GameObject.Position) * sprite.sizePerPixel, Scale, Vector2.Zero);
+            SpriteBatch.Draw(sprite.Material.texture, (Position + GameObject.GlobalPosition) * sprite.sizePerPixel, Scale, Vector2.Zero);
         }
 
         public override void Start()
