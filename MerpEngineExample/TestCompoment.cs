@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MerpEngine;
+﻿using MerpEngine;
+using MerpEngine.GUI.src;
+using System;
 
 namespace MerpEngineExample
 {
@@ -9,5 +8,10 @@ namespace MerpEngineExample
     public class TestCompoment : Compoment
     {
         public string test = "Yeet";
+
+        public override void Start()
+        {
+
+        }
     }
 }

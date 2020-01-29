@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerpEngine", "MerpEngine\MerpEngine.csproj", "{6D3D6227-9B1B-4628-9319-EDDEA56ADBFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerpEngineExample", "MerpEngineExample\MerpEngineExample.csproj", "{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerpEngineExample", "MerpEngineExample\MerpEngineExample.csproj", "{75CC0AB9-375C-48D3-B2E4-9E1DD01D2923}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerpEngineTests", "MerpEngineTests\MerpEngineTests.csproj", "{0A9D7677-EABB-4209-AB24-88F2EFF52C32}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerpEngineTests", "MerpEngineTests\MerpEngineTests.csproj", "{0A9D7677-EABB-4209-AB24-88F2EFF52C32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerpEngine.GUI", "MerpEngine.GUI\MerpEngine.GUI.csproj", "{9B5A8A8A-ADD5-4492-B40C-0A5E2F1F2275}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{0A9D7677-EABB-4209-AB24-88F2EFF52C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A9D7677-EABB-4209-AB24-88F2EFF52C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A9D7677-EABB-4209-AB24-88F2EFF52C32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B5A8A8A-ADD5-4492-B40C-0A5E2F1F2275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B5A8A8A-ADD5-4492-B40C-0A5E2F1F2275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B5A8A8A-ADD5-4492-B40C-0A5E2F1F2275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B5A8A8A-ADD5-4492-B40C-0A5E2F1F2275}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

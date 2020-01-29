@@ -1,5 +1,6 @@
 ﻿using OpenTK;
 using OpenTK.Input;
+using System;
 using System.Collections.Generic;
 
 namespace MerpEngine
@@ -28,6 +29,20 @@ namespace MerpEngine
             game.MouseDown += Game_MouseDown;
 
             game.MouseMove += Game_MouseMove;
+            game.MouseWheel += Game_MouseWheel;
+        }
+
+        private static int mouseScroll = 0;
+        public static float ScrollWeigth = 5;
+
+        private static float mouseScrollWheel = 0;
+        public static float MouseScrollWheel => mouseScrollWheel * ScrollWeigth;
+
+        private static void Game_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            int diference = mouseScroll - e.Mouse.ScrollWheelValue;
+            mouseScroll = e.Mouse.ScrollWheelValue;
+            mouseScrollWheel = diference;
         }
 
         private static void Game_MouseMove(object sender, MouseMoveEventArgs e)
@@ -62,6 +77,17 @@ namespace MerpEngine
         {
             keysDownLast = new List<Key>(keysDown);
             buttonsDownLast = new List<MouseButton>(buttonsDown);
+
+            mouseScrollWheel = (float)Math.Round(Vector2.Lerp(new Vector2(mouseScrollWheel, 0), Vector2.Zero, 0.5f).X, 5);
+            if (Math.Abs(mouseScrollWheel) < 0.0005)
+            {
+                mouseScrollWheel = 0;
+            }
+        }
+
+        float lerp(int a, int b, float time)
+        {
+            return b - (a * time);
         }
 
         public static bool KeyPress(Key key) => (keysDown.Contains(key) && !keysDownLast.Contains(key));

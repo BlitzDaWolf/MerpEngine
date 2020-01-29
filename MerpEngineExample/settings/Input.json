@@ -1,0 +1,28 @@
+{
+  "Axies": {
+    "Horizontal": {
+      "Name": null,
+      "PositiveKey": 86,
+      "NegitiveKey": 83,
+      "Inverted": false
+    },
+    "Vertical": {
+      "Name": null,
+      "PositiveKey": 105,
+      "NegitiveKey": 101,
+      "Inverted": true
+    },
+    "Escape": {
+      "Name": null,
+      "PositiveKey": 50,
+      "NegitiveKey": 0,
+      "Inverted": false
+    }
+  },
+  "Axies2D": {
+    "Movement": {
+      "Horizontal": "Horizontal",
+      "Vertical": "Vertical"
+    }
+  }
+}

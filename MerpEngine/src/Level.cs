@@ -1,8 +1,7 @@
-﻿using MerpEngine.Renderes;
+﻿using MerpEngine.Compoments;
 using OpenTK;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace MerpEngine
@@ -10,24 +9,66 @@ namespace MerpEngine
     [Serializable]
     public class Level
     {
+        public string pathName = "";
         public string Name = "";
-        public List<Material> SharedMaterials = new List<Material>();
+
         public List<Compoment> compoments = new List<Compoment>();
-        [NonSerialized]
-        private SpriteMap spriteMap = new SpriteMap() { GridSize = 64 };
+        public List<GameObject> GameObjects { get; set; } = new List<GameObject>();
 
-        public List<Sprite> GetSprite(int x, int y) => spriteMap.GetSprite(x, y).OrderBy(i => i.RenderOrder).ToList();
-        public void AddSprite(Sprite spr) => spriteMap.sprites.Add(spr);
+        internal void Render()
+        {
+            List<SpriteCompoment> spriteRenderes = new List<SpriteCompoment>();
 
-        internal void Render() => spriteMap.Render();
-        internal void Update() => compoments.ForEach(i => i.Update());
+            GetGameObjectsWithType<SpriteCompoment>()
+                .ToList()
+                .ForEach(x => spriteRenderes
+                    .Add(
+                        x.GetCompoment<SpriteCompoment>()));
+
+            spriteRenderes = spriteRenderes.OrderBy(x => x.RenderIndex).ToList();
+            spriteRenderes.ForEach(x => x.Render());
+        }
+        internal void Update()
+        {
+            GameObjects.ForEach(i => i.Update());
+        }
+
+        public GameObject GetGameObject(string name) => GameObjects.FirstOrDefault(x => x.Name == name);
+        public GameObject[] GetGameObjects(string name) => GameObjects.Where(x => x.Name == name).ToArray();
+
+        public GameObject[] GetGameObjectsWithType<T>() where T : Compoment
+        {
+            List<GameObject> objects = new List<GameObject>();
+            foreach (var item in GameObjects)
+            {
+                if (item.HasCompoment<T>())
+                {
+                    objects.Add(item);
+                }
+            }
+            return objects.ToArray();
+        }
 
         public string Save() => Newtonsoft.Json.JsonConvert.SerializeObject(this);
         internal void Destroy() => compoments.ForEach(x => x.Destroy());
         internal void Start()
         {
+            List<SpriteCompoment> spriteRenderes = new List<SpriteCompoment>();
+
+            GetGameObjectsWithType<SpriteCompoment>()
+                .ToList()
+                .ForEach(x => spriteRenderes
+                    .Add(
+                        x.GetCompoment<SpriteCompoment>()));
+
+            spriteRenderes.ForEach(x =>
+            {
+                if (x.sprite == null) return;
+                x.sprite.Material.Reload();
+            });
+
             Camera.Main.SetPosition(Vector2.Zero);
-            compoments.ForEach(x => x.Start());
+            GameObjects.ForEach(x => x.Start());
         }
     }
 }

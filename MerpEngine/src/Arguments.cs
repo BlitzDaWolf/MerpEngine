@@ -1,4 +1,5 @@
 ﻿using OpenTK;
+using System;
 using System.Collections.Generic;
 
 namespace MerpEngine
@@ -56,6 +57,11 @@ namespace MerpEngine
             }
 
             return newArguments.ToArray();
+        }
+
+        internal static void SetEnviroment(string argument)
+        {
+
         }
 
         private static Queue<string> placeFront(string a, Queue<string> old)

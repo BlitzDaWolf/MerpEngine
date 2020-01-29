@@ -1,10 +1,12 @@
 ﻿using OpenTK;
+using System;
 
 namespace MerpEngine.Renderes
 {
+    [Serializable]
     public class Sprite
     {
-        public int sizePerPixel = 64;
+        public int sizePerPixel = 256;
         public Vector2 Position;
 
         public int RenderOrder = 0;

@@ -1,5 +1,4 @@
-﻿using MerpEngine.GUI;
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System;
 using System.Diagnostics;
@@ -11,19 +10,26 @@ namespace MerpEngine
     public class Game
     {
         public GameWindow window;
-        EventHandeler handeler;
         Camera view;
 
         Level level;
 
         public static void Start()
         {
+            new Camera(Vector2.Zero);
             Debug.Info($"Loading levels");
             LevelManager.loadLevels();
             Debug.Info($"loaded {LevelManager.Levels.Count} level's");
 
+            Application.Start();
             Thread t = new Thread(() =>
             {
+                Debug.Info("Loading inputs");
+                ContentPipe.LoadInput();
+
+                Debug.Info($"Loaded: {AxiesManager.instance.Axies.Count} Axies");
+                Debug.Info($"Loaded: {AxiesManager.instance.Axies2D.Count} 2D axies");
+
                 Debug.Info("Starting game client");
                 Debug.Info($"Starting game with [{Screen.Width}, {Screen.Heigth}]");
 
@@ -36,6 +42,7 @@ namespace MerpEngine
                 window.Run();
             });
             t.Start();
+            new DebugConsole();
         }
 
         public Game(GameWindow windowInput)
@@ -48,10 +55,10 @@ namespace MerpEngine
             window.Closing += Window_Closing;
             window.Resize += Window_Resize;
 
+            view = Camera.Main;
             Screen.Width = window.Width;
             Screen.Heigth = window.Height;
 
-            view = new Camera(Vector2.Zero);
             Input.Initialize(window);
         }
 
@@ -65,15 +72,13 @@ namespace MerpEngine
 
         private void Window_Load(object sender, EventArgs e)
         {
-            handeler = new EventHandeler();
-
             level = new Level();
 
             GL.ClearColor(Color.Blue);
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
+            Application.Quit();
         }
 
         Stopwatch sw = Stopwatch.StartNew();
@@ -83,16 +88,18 @@ namespace MerpEngine
 
         private void Window_UpdateFrame(object sender, FrameEventArgs e)
         {
+            if (!Application.Running)
+            {
+                window.Close();
+            }
+
             Time.deltaTime = (float)e.Time;
 
-            handeler.Update();
             view.Update();
-            Input.Update();
-            level.Update();
 
-            Debug.Log(Input.MousePosition);
-            Debug.Log(Camera.Main.ToWorld(Input.MousePosition));
-            Debug.Log(Camera.Main.Position);
+            Input.Update();
+            ContentPipe.loadMaterials();
+            LevelManager._LaodedLevel.Update();
 
             if (sw.ElapsedMilliseconds > (1 * 1000))
             {
@@ -107,6 +114,7 @@ namespace MerpEngine
 
         private void Window_RenderFrame(object sender, FrameEventArgs e)
         {
+            Frame.CurrentFrame++;
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             GL.Enable(EnableCap.Texture2D);
@@ -119,11 +127,7 @@ namespace MerpEngine
 
 
             #region Sprites
-            level.Render();
-            #endregion
-
-            #region GUI
-            handeler.Render();
+            LevelManager._LaodedLevel.Render();
             #endregion
 
             frames++;

@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace MerpEngine
 {
     public static class LevelManager
     {
         public static List<Level> Levels = new List<Level>();
-        internal static Level LaodedLevel;
+        public static Level LoadedLevel => _LaodedLevel;
+        internal static Level _LaodedLevel;
         public static int loadedLevel { get; private set; } = 0;
 
         public static void loadLevels()
         {
             if (Directory.Exists("levels"))
             {
-                string[] lvl = Directory.GetFiles("levels", "*.lvl");
+                string[] lvl = Directory.GetFiles("levels", $"*{ContentPipe.LEVEL_EXSTENTION}");
                 for (int i = 0; i < lvl.Length; i++)
                 {
                     Levels.Add(ContentPipe.LoadLevel(lvl[i]));
                 }
             }
-            if(Levels.Count > 0)
+            if (Levels.Count > 0)
             {
                 loadedLevel = 0;
                 SetLevel();
@@ -35,22 +34,20 @@ namespace MerpEngine
 
         private static void SetLevel()
         {
-            LaodedLevel = Newtonsoft.Json.JsonConvert.DeserializeObject<Level>(Levels[loadedLevel].Save());
+            _LaodedLevel = ContentPipe.GetLevelCopy(Levels[loadedLevel]);
+            _LaodedLevel.Start();
         }
 
-        public static void Peek()
-        {
-            Debug.Log(LaodedLevel.Save());
-        }
+        public static void Peek() => Debug.Log(_LaodedLevel.Save());
 
         public static void LoadLevel(int number)
         {
-            if(number != loadedLevel)
+            if (number != loadedLevel)
             {
-                LaodedLevel.Destroy();
+                _LaodedLevel.Destroy();
                 loadedLevel = number;
                 SetLevel();
-                LaodedLevel.Start();
+                _LaodedLevel.Start();
             }
         }
     }
