@@ -14,7 +14,7 @@ namespace MerpEngine.GUI
 
         public UI()
         {
-            RenderIndex = int.MaxValue;
+
         }
 
         public override void Render()
@@ -23,7 +23,11 @@ namespace MerpEngine.GUI
             if (sprite.Material == null) return;
 
             Vector2 size = sprite.Material.texture.Size;
-            SpriteBatch.Draw(sprite.Material.texture, Camera.Main.Position - (new Vector2(size.X / 2, size.Y / 2)), Scale, Vector2.Zero);
+            SpriteBatch.Draw(sprite.Material.texture,
+                (Camera.Main.Position - (new Vector2(size.X / 2, size.Y / 2)))
+                +
+                GameObject.GlobalPosition,
+                Scale, Vector2.Zero, -1);
         }
     }
 }

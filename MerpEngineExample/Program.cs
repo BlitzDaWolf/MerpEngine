@@ -15,33 +15,8 @@ namespace MerpEngineExample
 
             bool info = true;
 
-            while (info)
-            {
-                Console.WriteLine($"L: Recreate level scene");
-                Console.WriteLine($"I: Recreate Input");
-                Console.WriteLine($"P: Start game");
-
-                DebugConsole.AddCommand("relevel", (a) => { RecreateLevel(); });
-                DebugConsole.AddCommand("reinput", (a) => { RecreateInputs(); });
-
-                ConsoleKeyInfo v = Console.ReadKey();
-
-                switch (v.Key)
-                {
-                    case ConsoleKey.L:
-                        RecreateLevel();
-                        break;
-                    case ConsoleKey.I:
-                        RecreateInputs();
-                        break;
-                    case ConsoleKey.P:
-                        info = false;
-                        break;
-                    default:
-                        break;
-                }
-                Console.Clear();
-            }
+            DebugConsole.AddCommand("relevel", (a) => { RecreateLevel(); });
+            DebugConsole.AddCommand("reinput", (a) => { RecreateInputs(); });
 
             Arguments.SetEnviroments(args);
 
