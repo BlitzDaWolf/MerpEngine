@@ -81,10 +81,6 @@ namespace MerpEngine.GUI.src
                 Heigth = Screen.Heigth;
             }
 
-            Text = @$"{(int)Frame.FPS}
-Camera: {Camera.Main.Position}
-Time: {Time.TimePasted}";
-
             Check();
             if (Changed)
             {
