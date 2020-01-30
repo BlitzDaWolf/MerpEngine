@@ -8,6 +8,9 @@ namespace MerpEngine
         public static List<Level> Levels = new List<Level>();
         public static Level LoadedLevel => _LaodedLevel;
         internal static Level _LaodedLevel;
+
+        public static Level Dontdestroy { get; private set; }
+
         public static int loadedLevel { get; private set; } = 0;
 
         public static void loadLevels()
@@ -29,7 +32,11 @@ namespace MerpEngine
             {
                 Debug.Error("No levels where found shutting down");
                 // Shut down game
+                Application.Quit();
             }
+
+            Dontdestroy = new Level();
+            Dontdestroy.Name = "Don't destroy on load";
         }
 
         private static void SetLevel()

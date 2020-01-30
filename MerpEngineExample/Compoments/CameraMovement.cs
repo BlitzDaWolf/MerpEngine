@@ -12,11 +12,23 @@ namespace MerpEngineExample.Compoments
         public override void Start()
         {
             Debug.Log("Hello world!");
+            DebugConsole.AddCommand("speed", (args) =>
+            {
+                int s = 0;
+                if(int.TryParse(args[0], out s))
+                {
+                    Speed = s;
+                }
+                else
+                {
+                    Debug.Log("fail");
+                }
+            });
         }
 
         public override void Update()
         {
-            Vector2 speed = AxiesManager.Get2DAxies("Movement");
+            Vector2 speed = AxiesManager.Get2DAxies("Movement") * this.Speed;
 
             if (Input.KeyPress(OpenTK.Input.Key.Q))
             {

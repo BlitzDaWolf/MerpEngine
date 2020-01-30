@@ -9,9 +9,12 @@ namespace MerpEngine
     [Serializable]
     public class GameObject
     {
+        private Level myLevel;
         internal Guid Id { get; set; }
 
         public GameObject parrent;
+
+        public bool Active { get; set; } = true;
 
         public string Name { get; set; }
         public Vector2 Position { get; set; }
@@ -26,6 +29,13 @@ namespace MerpEngine
             }
         }
 
+        public GameObject()
+        {
+            if(LevelManager._LaodedLevel != null)
+            {
+                LevelManager._LaodedLevel.GameObjects.Add(this);
+            }
+        }
 
         public List<Compoment> Compoments = new List<Compoment>();
         internal void Update() => Compoments.ForEach(i => i.Update());
@@ -41,7 +51,14 @@ namespace MerpEngine
             foreach (var item in v) item.Render();
         }
 
-        internal void Start() => Compoments.ForEach(x => x.Start());
+        internal void Start()
+        {
+            if(LevelManager._LaodedLevel != null)
+            {
+                myLevel = LevelManager._LaodedLevel;
+            }
+            Compoments.ForEach(x => x.Start());
+        }
 
         public T AddCompoment<T>() where T : Compoment, new()
         {
@@ -57,5 +74,17 @@ namespace MerpEngine
         }
 
         public bool HasCompoment<T>() where T : Compoment => GetCompoment<T>() != null;
+
+        public void DontDestroyOnLoad()
+        {
+            if(myLevel != null)
+            {
+                if(myLevel.Name != "Don't destroy on load")
+                {
+                    LevelManager.Dontdestroy.GameObjects.Add(this);
+                    myLevel.GameObjects.Remove(this);
+                }
+            }
+        }
     }
 }

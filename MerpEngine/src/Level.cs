@@ -26,12 +26,19 @@ namespace MerpEngine
                         x.GetCompoment<SpriteCompoment>()));
 
             spriteRenderes = spriteRenderes.OrderBy(x => x.RenderIndex).ToList();
-            spriteRenderes.ForEach(x => x.Render());
+            spriteRenderes.ForEach(x => {
+                if (x.GameObject.Active)
+                    x.Render();
+            });
         }
         internal void Update()
         {
             List<GameObject> GameObjectsCoppy = new List<GameObject>(GameObjects);
-            GameObjectsCoppy.ForEach(i => i.Update());
+            GameObjectsCoppy.ForEach(i =>
+            {
+                if (i.Active)
+                    i.Update();
+            });
         }
 
         public GameObject GetGameObject(string name) => GameObjects.FirstOrDefault(x => x.Name == name);
@@ -54,6 +61,9 @@ namespace MerpEngine
         internal void Destroy() => compoments.ForEach(x => x.Destroy());
         internal void Start()
         {
+            Debug.Info("Starting level");
+            Debug.Info($"{GameObjects.Count} gameobjects laoded");
+
             List<SpriteCompoment> spriteRenderes = new List<SpriteCompoment>();
 
             GetGameObjectsWithType<SpriteCompoment>()

@@ -72,6 +72,7 @@ namespace MerpEngine
 
         private void Window_Load(object sender, EventArgs e)
         {
+            Time.startTimer = Stopwatch.StartNew();
             level = new Level();
 
             GL.ClearColor(Color.Blue);
@@ -99,7 +100,10 @@ namespace MerpEngine
 
             Input.Update();
             ContentPipe.loadMaterials();
+
+            // Update scenes
             LevelManager._LaodedLevel.Update();
+            LevelManager.Dontdestroy.Update();
 
             if (sw.ElapsedMilliseconds > (1 * 1000))
             {
@@ -128,6 +132,7 @@ namespace MerpEngine
 
             #region Sprites
             LevelManager._LaodedLevel.Render();
+            LevelManager.Dontdestroy.Render();
             #endregion
 
             frames++;

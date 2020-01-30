@@ -8,6 +8,12 @@ namespace MerpEngine.GUI
 {
     public class EventHandeler : SpriteCompoment
     {
+        public override void Start()
+        {
+            base.Start();
+            GameObject.DontDestroyOnLoad();
+        }
+
         public override void Update() { }
 
         public bool isHovering(UI ui)

@@ -15,8 +15,10 @@ namespace MerpEngine
                 frames.Dequeue();
             }
             frames.Enqueue(a);
+            FPS = a;
         }
 
         public static float avg => frames.Count > 0 ? (float)frames.Average() : 0;
+        public static float FPS;
     }
 }

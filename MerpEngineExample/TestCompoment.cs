@@ -21,12 +21,15 @@ namespace MerpEngineExample
             {
                 try
                 {
+                    Random rnd = new Random();
                     for (int x = 0; x < 100; x++)
                     {
                         for (int y = 0; y < 100; y++)
                         {
                             GameObject go = new GameObject();
                             go.Position = new OpenTK.Vector2(x, y);
+
+                            go.Active = rnd.Next(0, 100) > 50;
                             
                             if (y % 2 == 1)
                             {

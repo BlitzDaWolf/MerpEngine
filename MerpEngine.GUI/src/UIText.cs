@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Imaging;
-using OpenTK.Graphics.OpenGL;
 
-using System.Diagnostics;
 using MerpEngine.Renderes;
 
 namespace MerpEngine.GUI.src
@@ -84,8 +81,9 @@ namespace MerpEngine.GUI.src
                 Heigth = Screen.Heigth;
             }
 
-            Text = @$"{(int)Frame.avg}
-Camera: {Camera.Main.Position}";
+            Text = @$"{(int)Frame.FPS}
+Camera: {Camera.Main.Position}
+Time: {Time.TimePasted}";
 
             Check();
             if (Changed)
