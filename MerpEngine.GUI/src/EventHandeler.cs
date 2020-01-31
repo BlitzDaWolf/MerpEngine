@@ -11,6 +11,7 @@ namespace MerpEngine.GUI
         public override void Start()
         {
             base.Start();
+            base.GameObject.Name = "EventHandeler";
             GameObject.DontDestroyOnLoad();
         }
 

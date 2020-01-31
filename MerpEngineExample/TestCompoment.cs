@@ -1,5 +1,6 @@
 ﻿using MerpEngine;
 using MerpEngine.Compoments;
+using MerpEngine.GUI;
 using MerpEngine.GUI.src;
 using System;
 
@@ -13,6 +14,8 @@ namespace MerpEngineExample
 
         public override void Start()
         {
+            GameObject go = new GameObject();
+            go.AddCompoment<EventHandeler>();
         }
 
         public override void Update()
@@ -27,7 +30,7 @@ namespace MerpEngineExample
                         for (int y = 0; y < 100; y++)
                         {
                             GameObject go = new GameObject();
-                            go.Position = new OpenTK.Vector2(x, y);
+                            go.Position = new OpenTK.Vector2(x, y) * 128;
 
                             go.Active = rnd.Next(0, 100) > 50;
                             

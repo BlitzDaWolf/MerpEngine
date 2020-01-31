@@ -24,6 +24,19 @@ namespace MerpEngineExample.Compoments
                     Debug.Log("fail");
                 }
             });
+            DebugConsole.AddCommand("zoom", setZoom);
+        }
+
+        public void setZoom(string[] args)
+        {
+            float f = 0;
+            if (args.Length >= 1)
+            {
+                if (float.TryParse(args[0], out f))
+                {
+                    Camera.Main.zoom = f;
+                }
+            }
         }
 
         public override void Update()

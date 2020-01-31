@@ -16,7 +16,7 @@ namespace MerpEngine
 
         public bool Active { get; set; } = true;
 
-        public string Name { get; set; }
+        public string Name { get; set; } = Guid.NewGuid().ToString();
         public Vector2 Position { get; set; }
         public Vector2 GlobalPosition
         {
@@ -34,6 +34,7 @@ namespace MerpEngine
             if(LevelManager._LaodedLevel != null)
             {
                 LevelManager._LaodedLevel.GameObjects.Add(this);
+                Start();
             }
         }
 
@@ -65,6 +66,7 @@ namespace MerpEngine
             T newObject = new T();
             newObject.GameObject = this;
             Compoments.Add(newObject);
+            newObject.Start();
             return newObject;
         }
 

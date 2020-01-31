@@ -9,8 +9,8 @@
     <RepositoryUrl>https://github.com/BlitzDaWolf/MerpEngine</RepositoryUrl>
     <RepositoryType>github</RepositoryType>
     <PackageTags>gameengine 2D GUI</PackageTags>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>

@@ -22,6 +22,7 @@ namespace MerpEngine
             Debug.Info($"loaded {LevelManager.Levels.Count} level's");
 
             Application.Start();
+            DebugConsole dc = new DebugConsole();
             Thread t = new Thread(() =>
             {
                 Debug.Info("Loading inputs");
@@ -37,12 +38,12 @@ namespace MerpEngine
                 window.WindowBorder = Screen.Border;
                 window.X = 0;
                 window.Y = 0;
+                window.Closed += dc.Close;
 
                 Game game = new Game(window);
                 window.Run();
             });
             t.Start();
-            new DebugConsole();
         }
 
         public Game(GameWindow windowInput)

@@ -13,7 +13,7 @@ namespace MerpEngineExample
         {
             ContentPipe.LoadInput();
 
-            bool info = true;
+            RecreateLevel();
 
             DebugConsole.AddCommand("relevel", (a) => { RecreateLevel(); });
             DebugConsole.AddCommand("reinput", (a) => { RecreateInputs(); });

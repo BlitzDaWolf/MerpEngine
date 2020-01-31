@@ -12,16 +12,26 @@ namespace MerpEngine
 
         public static void AddCommand(string name, Action<string[]> action)
         {
-            otherCommands.Add(name.ToLower(), action);
+            if (otherCommands.ContainsKey(name))
+            {
+                otherCommands[name] += action;
+            }
+            else
+            {
+                otherCommands.Add(name.ToLower(), action);
+            }
         }
 
         public bool ConsoleRunning = true;
+        Thread thr;
 
         public DebugConsole()
         {
-            Thread thr = new Thread(ConsoleleLoop);
+            thr = new Thread(ConsoleleLoop);
             thr.Start();
         }
+
+        internal void Close(object sender, EventArgs e) { }
 
         public void ConsoleleLoop()
         {
@@ -71,6 +81,30 @@ namespace MerpEngine
                 else if(baseCmd == "size")
                 {
                     Debug.Log($"Screen size: {new Vector2(Screen.Width, Screen.Heigth)}");
+                }
+                else if(baseCmd == "fps")
+                {
+                    Debug.Log($"AVG {Frame.avg}");
+                    Debug.Log($"last {Frame.FPS}");
+                }
+                else if(baseCmd == "clear")
+                {
+                    Console.Clear();
+                }
+                else if(baseCmd == "gameobjects")
+                {
+                    Debug.Log($"Loaded gameobjects: {LevelManager.LoadedLevel.GameObjects.Count + LevelManager.Dontdestroy.GameObjects.Count}");
+                    Debug.Log($"Active gameobjects: {LevelManager.LoadedLevel.GameObjects.Where(x=>x.Active).Count() + LevelManager.Dontdestroy.GameObjects.Where(x => x.Active).Count()}");
+                }
+                else if(baseCmd == "exec")
+                {
+                    if(command.Length > 1)
+                    {
+                        if(command[1].ToLower() == "getgameobject")
+                        {
+                            Debug.Log(LevelManager.LoadedLevel.GetGameObject(command[2]));
+                        }
+                    }
                 }
                 else if (otherCommands.ContainsKey(baseCmd))
                 {

@@ -9,12 +9,19 @@ namespace MerpEngine
         public static Level LoadedLevel => _LaodedLevel;
         internal static Level _LaodedLevel;
 
+        internal static bool startLevel = false;
+
         public static Level Dontdestroy { get; private set; }
 
         public static int loadedLevel { get; private set; } = 0;
 
-        public static void loadLevels()
+        internal static void loadLevels()
         {
+
+            Dontdestroy = new Level();
+            Dontdestroy.DontDestroyOnLoad = true;
+            Dontdestroy.Name = "Don't destroy on load";
+
             if (Directory.Exists("levels"))
             {
                 string[] lvl = Directory.GetFiles("levels", $"*{ContentPipe.LEVEL_EXSTENTION}");
@@ -34,14 +41,13 @@ namespace MerpEngine
                 // Shut down game
                 Application.Quit();
             }
-
-            Dontdestroy = new Level();
-            Dontdestroy.Name = "Don't destroy on load";
         }
 
         private static void SetLevel()
         {
+            startLevel = false;
             _LaodedLevel = ContentPipe.GetLevelCopy(Levels[loadedLevel]);
+            startLevel = true;
             _LaodedLevel.Start();
         }
 
@@ -54,7 +60,6 @@ namespace MerpEngine
                 _LaodedLevel.Destroy();
                 loadedLevel = number;
                 SetLevel();
-                _LaodedLevel.Start();
             }
         }
     }

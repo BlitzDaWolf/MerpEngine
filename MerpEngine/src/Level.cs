@@ -9,6 +9,7 @@ namespace MerpEngine
     [Serializable]
     public class Level
     {
+        public  bool DontDestroyOnLoad { get; internal set; }
         public string pathName = "";
         public string Name = "";
 
@@ -41,7 +42,17 @@ namespace MerpEngine
             });
         }
 
-        public GameObject GetGameObject(string name) => GameObjects.FirstOrDefault(x => x.Name == name);
+        public GameObject GetGameObject(string name)
+        {
+            if (!DontDestroyOnLoad)
+            {
+                if (LevelManager.Dontdestroy.GetGameObject(name) != null)
+                {
+                    return LevelManager.Dontdestroy.GetGameObject(name);
+                }
+            }
+            return GameObjects.FirstOrDefault(x => x.Name == name);
+        }
         public GameObject[] GetGameObjects(string name) => GameObjects.Where(x => x.Name == name).ToArray();
 
         public GameObject[] GetGameObjectsWithType<T>() where T : Compoment
@@ -61,8 +72,12 @@ namespace MerpEngine
         internal void Destroy() => compoments.ForEach(x => x.Destroy());
         internal void Start()
         {
+            if (!LevelManager.startLevel) return;
+
             Debug.Info("Starting level");
             Debug.Info($"{GameObjects.Count} gameobjects laoded");
+
+            List<GameObject> coppyGameobjects = new List<GameObject>(GameObjects);
 
             List<SpriteCompoment> spriteRenderes = new List<SpriteCompoment>();
 
@@ -79,7 +94,7 @@ namespace MerpEngine
             });
 
             Camera.Main.SetPosition(Vector2.Zero);
-            GameObjects.ForEach(x => x.Start());
+            coppyGameobjects.ForEach(x => x.Start());
         }
     }
 }

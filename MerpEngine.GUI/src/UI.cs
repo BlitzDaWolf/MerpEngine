@@ -32,7 +32,7 @@ namespace MerpEngine.GUI
                 (Camera.Main.Position - (new Vector2(size.X / 2, size.Y / 2)))
                 +
                 GameObject.GlobalPosition,
-                Scale, Vector2.Zero, -3);
+                Scale / (float)Camera.Main.zoom, Vector2.Zero, -3);
         }
     }
 }
