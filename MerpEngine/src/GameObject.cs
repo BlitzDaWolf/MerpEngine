@@ -58,7 +58,10 @@ namespace MerpEngine
             {
                 myLevel = LevelManager._LaodedLevel;
             }
-            Compoments.ForEach(x => x.Start());
+            {
+                var copyList = new List<Compoment>(Compoments);    
+                copyList.ForEach(x => x.Start());
+            }
         }
 
         public T AddCompoment<T>() where T : Compoment, new()
@@ -66,7 +69,8 @@ namespace MerpEngine
             T newObject = new T();
             newObject.GameObject = this;
             Compoments.Add(newObject);
-            newObject.Start();
+            if (LevelManager.startLevel)
+                newObject.Start();
             return newObject;
         }
 

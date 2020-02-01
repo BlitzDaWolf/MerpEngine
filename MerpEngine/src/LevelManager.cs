@@ -51,7 +51,6 @@ namespace MerpEngine
             _LaodedLevel.Start();
         }
 
-        public static void Peek() => Debug.Log(_LaodedLevel.Save());
 
         public static void LoadLevel(int number)
         {

@@ -13,7 +13,6 @@ namespace MerpEngine
         public string pathName = "";
         public string Name = "";
 
-        public List<Compoment> compoments = new List<Compoment>();
         public List<GameObject> GameObjects { get; set; } = new List<GameObject>();
 
         internal void Render()
@@ -53,11 +52,24 @@ namespace MerpEngine
             }
             return GameObjects.FirstOrDefault(x => x.Name == name);
         }
-        public GameObject[] GetGameObjects(string name) => GameObjects.Where(x => x.Name == name).ToArray();
+        public GameObject[] GetGameObjects(string name)
+        {
+            List<GameObject> objects = new List<GameObject>();
+            if (this != LevelManager.Dontdestroy)
+            {
+                objects.AddRange(LevelManager.Dontdestroy.GetGameObjects(name));
+            }
+            objects.AddRange(GameObjects.Where(x => x.Name == name));
+            return objects.ToArray();
+        }
 
         public GameObject[] GetGameObjectsWithType<T>() where T : Compoment
         {
             List<GameObject> objects = new List<GameObject>();
+            if (this != LevelManager.Dontdestroy)
+            {
+                objects.AddRange(LevelManager.Dontdestroy.GetGameObjectsWithType<T>());
+            }
             foreach (var item in GameObjects)
             {
                 if (item.HasCompoment<T>())
@@ -68,8 +80,7 @@ namespace MerpEngine
             return objects.ToArray();
         }
 
-        public string Save() => Newtonsoft.Json.JsonConvert.SerializeObject(this);
-        internal void Destroy() => compoments.ForEach(x => x.Destroy());
+        internal void Destroy() { }
         internal void Start()
         {
             if (!LevelManager.startLevel) return;

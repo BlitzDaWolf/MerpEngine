@@ -106,6 +106,11 @@ namespace MerpEngine
                         }
                     }
                 }
+                else if(baseCmd == "level")
+                {
+                    Debug.Log($"Loaded Level: {LevelManager.loadedLevel}");
+                    Debug.Log($"Level name: {LevelManager.LoadedLevel.Name}");
+                }
                 else if (otherCommands.ContainsKey(baseCmd))
                 {
                     otherCommands[baseCmd](command.Skip(1).ToArray());
