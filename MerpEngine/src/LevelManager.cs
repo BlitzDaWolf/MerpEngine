@@ -54,11 +54,17 @@ namespace MerpEngine
 
         public static void LoadLevel(int number)
         {
-            if (number != loadedLevel)
+            if(number < Levels.Count && number >= 0){
+                if (number != loadedLevel)
+                {
+                    _LaodedLevel.Destroy();
+                    loadedLevel = number;
+                    SetLevel();
+                }
+            }
+            else
             {
-                _LaodedLevel.Destroy();
-                loadedLevel = number;
-                SetLevel();
+                Debug.Error($"Level {number} out of range");
             }
         }
     }
