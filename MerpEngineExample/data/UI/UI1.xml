@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Canvas>
+  <Text rect="0,0,200,600" color="Green" font="Arial" font_size="32">Hello test</Text>
+</Canvas>

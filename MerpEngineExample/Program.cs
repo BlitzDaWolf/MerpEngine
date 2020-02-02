@@ -58,7 +58,7 @@ namespace MerpEngineExample
 
             {
                 GameObject go = new GameObject();
-                go.AddCompoment<MerpEngine.GUI.src.UIText>();
+                
                 go.AddCompoment<CameraMovement>();
                 go.AddCompoment<TestCompoment>();
                 l.GameObjects.Add(go);

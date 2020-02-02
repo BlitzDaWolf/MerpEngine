@@ -15,12 +15,13 @@ namespace MerpEngineExample
         public override void Start()
         {
             GameObject go = new GameObject();
-            go.AddCompoment<EventHandeler>();
+            EventHandeler eh = go.AddCompoment<EventHandeler>();
+            eh.Load();
         }
 
         public override void Update()
         {
-            if(succes == false)
+            /*if(succes == false)
             {
                 try
                 {
@@ -66,7 +67,7 @@ namespace MerpEngineExample
                 {
                     Debug.Log("Err");
                 }
-            }
+            }*/
         }
     }
 }
