@@ -55,7 +55,7 @@ namespace MerpEngine
         /// <returns></returns>
         public static Texture2D LoadTexture(string filePath, bool pixelated = true)
         {
-            filePath = $"Content/{filePath}";
+            filePath = $"data/Content/{filePath}";
             if (!File.Exists(filePath))
             {
                 throw new Exception($"File does not exsist at '{filePath}'");
@@ -137,14 +137,14 @@ namespace MerpEngine
 
         public static void SaveInput()
         {
-            File.WriteAllText("settings/Input" + INPUT_EXSTENTION, Newtonsoft.Json.JsonConvert.SerializeObject(AxiesManager.instance, Newtonsoft.Json.Formatting.Indented));
+            File.WriteAllText("data/settings/Input" + INPUT_EXSTENTION, Newtonsoft.Json.JsonConvert.SerializeObject(AxiesManager.instance, Newtonsoft.Json.Formatting.Indented));
         }
 
         public static void LoadInput()
         {
             try
             {
-                AxiesManager.instance = Newtonsoft.Json.JsonConvert.DeserializeObject<AxiesManager>(File.ReadAllText("settings/Input" + INPUT_EXSTENTION));
+                AxiesManager.instance = Newtonsoft.Json.JsonConvert.DeserializeObject<AxiesManager>(File.ReadAllText("data/settings/Input" + INPUT_EXSTENTION));
             }
             catch (Exception ex)
             {

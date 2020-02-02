@@ -63,7 +63,7 @@ namespace MerpEngineExample
                 go.AddCompoment<TestCompoment>();
                 l.GameObjects.Add(go);
             }
-            ContentPipe.SaveLevel(l, "levels/level1.lvl");
+            ContentPipe.SaveLevel(l, "data/levels/level1.lvl");
         }
     }
 }
