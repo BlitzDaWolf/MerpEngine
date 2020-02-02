@@ -3,6 +3,7 @@ using OpenTK;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -30,6 +31,15 @@ namespace MerpEngine.GUI
             return (mousePosition.X < topLeft.X && mousePosition.Y < topLeft.Y) && (mousePosition.X > bottomRigth.X && mousePosition.Y > bottomRigth.Y);*/
         }
 
+        public T GetUI<T>(string name) where T : UI
+        {
+            GameObject go = LevelManager.LoadedLevel.GetGameObject(name);
+            if(go != null) return go.GetCompoment<T>();
+            return null;
+        }
+
+        public T[] GetUIS<T>(string name) where T : UI => LevelManager.LoadedLevel.GetGameObjects(name).Where(x => x.GetCompoment<T>() != null).Select(x => x.GetCompoment<T>()).ToArray();
+
         public void Save()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(UI));
@@ -37,7 +47,7 @@ namespace MerpEngine.GUI
             serializer.Serialize(writer, null);
         }
 
-        public void Load()
+        public void Load(string path)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load("data/UI/UI1.xml");

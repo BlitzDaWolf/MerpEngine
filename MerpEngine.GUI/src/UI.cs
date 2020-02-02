@@ -29,6 +29,7 @@ namespace MerpEngine.GUI
 
         public UI(XmlNode node)
         {
+            RenderIndex += 900;
             var go = new GameObject();
             go.Compoments.Add(this);
             this.GameObject = go;
@@ -39,6 +40,7 @@ namespace MerpEngine.GUI
             {
                 var rectAtr = node.Attributes.GetNamedItem("rect");
                 var anchorAtr = node.Attributes.GetNamedItem("anchor");
+                var nameAtr = node.Attributes.GetNamedItem("name");
 
                 if(rectAtr != null)
                 {
@@ -64,6 +66,10 @@ namespace MerpEngine.GUI
                 {
 
                 }
+                if(nameAtr != null)
+                {
+                    GameObject.Name = nameAtr.Value;
+                }
             }
             else
             {
@@ -85,7 +91,7 @@ namespace MerpEngine.GUI
 
             Vector2 size = new Vector2(Screen.Width / 2, Screen.Heigth / 2);
             SpriteBatch.Draw(sprite.Material.texture,
-                (Camera.Main.Position - size), Vector2.One, Vector2.Zero);
+                (Camera.Main.Position - size) + position, Vector2.One, Vector2.Zero);
         }
     }
 }
