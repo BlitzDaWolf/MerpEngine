@@ -22,13 +22,16 @@ namespace MerpEngine.GUI
 
         public bool isHovering(UI ui)
         {
-            return false;
-           /* Vector2 mousePosition = Input.MousePosition;
+            Vector2 mousePosition = Input.MousePosition;
+            Vector2 offset = Vector2.Zero;
 
-            Vector2 topLeft = new Vector2(ui.UISize.Top, ui.UISize.Left);
-            Vector2 bottomRigth = new Vector2(ui.UISize.Right, ui.UISize.Bottom);
+            Vector2 topLeft = new Vector2(ui.Rect.X, ui.Rect.Y);
+            Vector2 bottomRight = new Vector2(ui.Rect.X + ui.Rect.Right, ui.Rect.Y + ui.Rect.Bottom);
 
-            return (mousePosition.X < topLeft.X && mousePosition.Y < topLeft.Y) && (mousePosition.X > bottomRigth.X && mousePosition.Y > bottomRigth.Y);*/
+            return (mousePosition.X < topLeft.X 
+                    && mousePosition.Y < topLeft.Y)
+                && (mousePosition.X > bottomRight.X 
+                    && mousePosition.Y > bottomRight.Y);
         }
 
         public T GetUI<T>(string name) where T : UI

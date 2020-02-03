@@ -11,21 +11,43 @@ namespace MerpEngine.GUI
     public class UIText : UI
     {
         #region Public data
-        public string Text = "test";
-        public string Font = "Arial";
+        public string Text{
+            get => _Text;
+            set {
+                Changed = true;
+                _Text = value;
+            }
+        }
+        public string Font{
+            get => _Font;
+            set {
+                Changed = true;
+                _Font = value;
+            }
+        }
 
-        public int Size = 16;
+        public int Size{
+            get => _Size;
+            set{
+                Changed = true;
+                _Size = value;
+            }
+        }
 
-        public Color color = Color.Green;
-
-        public bool ResizeWithScreen = true;
+        public Color color{
+            get => _color;
+            set{
+                Changed = true;
+                _color = value;
+            }
+        }
         #endregion
 
         #region Private data
-        public string _Text;
-        public string _Font = "Arial";
+        private string _Text;
+        private string _Font = "Arial";
 
-        public int _Size = 16;
+        private int _Size = 16;
 
         private Rectangle _Rect;
         public Color _color = Color.Black;
@@ -63,12 +85,11 @@ namespace MerpEngine.GUI
                     default:
                         break;
                 }
-                ResizeWithScreen = false;
             }
         }
 
         private void SetXMLFont(string value) => Font = value;
-        private void SetXMLSize(string value) => int.TryParse(value, out Size);
+        private void SetXMLSize(string value) => int.TryParse(value, out _Size);
         private void SetXMLColor(string value)
         {
             if(value[0] == '#')
@@ -105,30 +126,8 @@ namespace MerpEngine.GUI
             return bmp;
         }
 
-        public void Check()
-        {
-            if (
-                (Text != _Text) ||
-                (Rect != _Rect) ||
-                (color != _color)
-                )
-            {
-                _Text = Text;
-                _Rect = Rect;
-                _color = color;
-               Changed = true;
-            }
-        }
-
         public override void Update()
         {
-            /*if (ResizeWithScreen)
-            {
-                Rect.Width = Screen.Width;
-                Rect.Height = Screen.Heigth;
-            }*/
-
-            Check();
             if (Changed)
             {
                 if (sprite != null)
