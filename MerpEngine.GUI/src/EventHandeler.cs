@@ -2,11 +2,14 @@
 using OpenTK;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Linq;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace MerpEngine.GUI
 {
-    public class EventHandeler : SpriteCompoment
+    public class EventHandeler : Compoment
     {
         public override void Start()
         {
@@ -19,14 +22,51 @@ namespace MerpEngine.GUI
 
         public bool isHovering(UI ui)
         {
-            Vector2 mousePosition = Input.MousePosition;
+            return false;
+           /* Vector2 mousePosition = Input.MousePosition;
 
             Vector2 topLeft = new Vector2(ui.UISize.Top, ui.UISize.Left);
             Vector2 bottomRigth = new Vector2(ui.UISize.Right, ui.UISize.Bottom);
 
-            return (mousePosition.X < topLeft.X && mousePosition.Y < topLeft.Y) && (mousePosition.X > bottomRigth.X && mousePosition.Y > bottomRigth.Y);
+            return (mousePosition.X < topLeft.X && mousePosition.Y < topLeft.Y) && (mousePosition.X > bottomRigth.X && mousePosition.Y > bottomRigth.Y);*/
         }
 
-        public override void Render() { }
+        public T GetUI<T>(string name) where T : UI
+        {
+            GameObject go = LevelManager.LoadedLevel.GetGameObject(name);
+            if(go != null) return go.GetCompoment<T>();
+            return null;
+        }
+
+        public T[] GetUIS<T>(string name) where T : UI => LevelManager.LoadedLevel.GetGameObjects(name).Where(x => x.GetCompoment<T>() != null).Select(x => x.GetCompoment<T>()).ToArray();
+
+        public void Save()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(UI));
+            TextWriter writer = new StringWriter();
+            serializer.Serialize(writer, null);
+        }
+
+        public void Load(string path)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load("data/UI/UI1.xml");
+
+            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+            {
+                if (node.Name == "Button")
+                {
+                    new Button(node);
+                }
+                else if (node.Name == "Text")
+                {
+                    new UIText(node);
+                }
+                else
+                {
+                    new UI(node);
+                }
+            }
+        }
     }
 }

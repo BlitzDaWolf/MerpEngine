@@ -2,19 +2,79 @@
 using OpenTK;
 using System;
 using System.Drawing;
+using System.Xml;
 using Rectangle = System.Drawing.Rectangle;
 
 namespace MerpEngine.GUI
 {
+    public enum AnchorPoints
+    {
+        TopLeft = 0,
+        TopRight = 1,
+
+        BottomLeft = 2,
+        BottomRight = 3
+    }
+
     [Serializable]
     public class UI : SpriteCompoment
     {
-        public Rectangle UISize;
-        public Rectangle UIPosition;
+        public AnchorPoints Anchor;
+        public Rectangle Rect;
 
         public UI()
         {
 
+        }
+
+        public UI(XmlNode node)
+        {
+            RenderIndex += 900;
+            var go = new GameObject();
+            go.Compoments.Add(this);
+            this.GameObject = go;
+
+            var atrs = node.Attributes;
+
+            if (atrs != null)
+            {
+                var rectAtr = node.Attributes.GetNamedItem("rect");
+                var anchorAtr = node.Attributes.GetNamedItem("anchor");
+                var nameAtr = node.Attributes.GetNamedItem("name");
+
+                if(rectAtr != null)
+                {
+                    {
+                        string[] rectSplited = rectAtr.Value.Split(new char[] { ',' });
+                        if(rectSplited.Length >= 4)
+                        {
+                            int x, y, w, h;
+                            int.TryParse(rectSplited[0], out x);
+                            int.TryParse(rectSplited[1], out y);
+                            int.TryParse(rectSplited[2], out w);
+                            int.TryParse(rectSplited[3], out h);
+
+                            Rect = new Rectangle(x, y, w, h);
+                        }
+                        else
+                        {
+                            Debug.Log("Can't create rect");
+                        }
+                    }
+                }
+                if(anchorAtr != null)
+                {
+
+                }
+                if(nameAtr != null)
+                {
+                    GameObject.Name = nameAtr.Value;
+                }
+            }
+            else
+            {
+                Debug.Log(node.Attributes);
+            }
         }
 
         public override void Start()
@@ -27,12 +87,11 @@ namespace MerpEngine.GUI
             if (sprite == null) return;
             if (sprite.Material == null) return;
 
-            Vector2 size = sprite.Material.texture.Size;
+            Vector2 position = new Vector2(Rect.X, Rect.Y);
+
+            Vector2 size = new Vector2(Screen.Width / 2, Screen.Heigth / 2);
             SpriteBatch.Draw(sprite.Material.texture,
-                (Camera.Main.Position - (new Vector2(size.X / 2, size.Y / 2)))
-                +
-                GameObject.GlobalPosition,
-                Scale / (float)Camera.Main.zoom, Vector2.Zero, -3);
+                (Camera.Main.Position - size) + position, Vector2.One, Vector2.Zero);
         }
     }
 }

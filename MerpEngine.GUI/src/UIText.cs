@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Drawing;
-
+using System.Xml;
 using MerpEngine.Renderes;
+using System.Globalization;
 
-namespace MerpEngine.GUI.src
+namespace MerpEngine.GUI
 {
     [Serializable]
     public class UIText : UI
@@ -14,8 +16,6 @@ namespace MerpEngine.GUI.src
 
         public int Size = 16;
 
-        public int Width = 800;
-        public int Heigth = 600;
         public Color color = Color.Green;
 
         public bool ResizeWithScreen = true;
@@ -27,11 +27,60 @@ namespace MerpEngine.GUI.src
 
         public int _Size = 16;
 
-        public int _Width = 800;
-        public int _Heigth = 600;
+        private Rectangle _Rect;
         public Color _color = Color.Black;
 
         private Bitmap oldBitmap;
+        #endregion
+
+        public UIText()
+        {
+            Rect = new Rectangle(0, 0, 800, 600);
+        }
+
+        #region XMLLoading
+        public UIText(XmlNode node) : base(node)
+        {
+            Text = node.InnerText;
+            for (int i = 0; i < node.Attributes.Count; i++)
+            {
+                var atr = node.Attributes.Item(i);
+                if(atr.Name == "")
+                {
+
+                }
+                switch (atr.Name)
+                {
+                    case "font":
+                        SetXMLFont(atr.Value);
+                        break;
+                    case "font_size":
+                        SetXMLSize(atr.Value);
+                        break;
+                    case "color":
+                        SetXMLColor(atr.Value);
+                        break;
+                    default:
+                        break;
+                }
+                ResizeWithScreen = false;
+            }
+        }
+
+        private void SetXMLFont(string value) => Font = value;
+        private void SetXMLSize(string value) => int.TryParse(value, out Size);
+        private void SetXMLColor(string value)
+        {
+            if(value[0] == '#')
+            {
+                int argb = Int32.Parse("FF" + value.Replace("#", ""), NumberStyles.HexNumber);
+                color = Color.FromArgb(argb);
+            }
+            else
+            {
+                color = Color.FromName(value);
+            }
+        }
         #endregion
 
         public bool Changed { get; private set; } = true;
@@ -42,7 +91,7 @@ namespace MerpEngine.GUI.src
         {
             if (oldBitmap != null)
                 oldBitmap.Dispose();
-            Bitmap bmp = new Bitmap(Width, Heigth, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Bitmap bmp = new Bitmap(Rect.Width, Rect.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
 
             Graphics gfx = Graphics.FromImage(bmp);
             SolidBrush drawBrush = new SolidBrush(color);
@@ -60,14 +109,12 @@ namespace MerpEngine.GUI.src
         {
             if (
                 (Text != _Text) ||
-                (Width != _Width) ||
-                (Heigth != _Heigth) ||
+                (Rect != _Rect) ||
                 (color != _color)
                 )
             {
                 _Text = Text;
-                _Width = Width;
-                _Heigth = Heigth;
+                _Rect = Rect;
                 _color = color;
                Changed = true;
             }
@@ -75,11 +122,11 @@ namespace MerpEngine.GUI.src
 
         public override void Update()
         {
-            if (ResizeWithScreen)
+            /*if (ResizeWithScreen)
             {
-                Width = Screen.Width;
-                Heigth = Screen.Heigth;
-            }
+                Rect.Width = Screen.Width;
+                Rect.Height = Screen.Heigth;
+            }*/
 
             Check();
             if (Changed)

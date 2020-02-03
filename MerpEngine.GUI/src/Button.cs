@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace MerpEngine.GUI
 {
@@ -10,6 +11,11 @@ namespace MerpEngine.GUI
         public Sprite Default;
         public Sprite OnHover;
         public Sprite OnClick;
+
+        public Button(XmlNode node) : base(node)
+        {
+
+        }
 
         public override void Start()
         {

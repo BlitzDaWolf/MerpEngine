@@ -22,9 +22,9 @@ namespace MerpEngine
             Dontdestroy.DontDestroyOnLoad = true;
             Dontdestroy.Name = "Don't destroy on load";
 
-            if (Directory.Exists("levels"))
+            if (Directory.Exists("data/levels"))
             {
-                string[] lvl = Directory.GetFiles("levels", $"*{ContentPipe.LEVEL_EXSTENTION}");
+                string[] lvl = Directory.GetFiles("data/levels", $"*{ContentPipe.LEVEL_EXSTENTION}");
                 for (int i = 0; i < lvl.Length; i++)
                 {
                     Levels.Add(ContentPipe.LoadLevel(lvl[i]));

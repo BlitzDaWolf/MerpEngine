@@ -11,23 +11,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Content\test.png">
+    <None Update="data\Content\test.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Content\_test.png">
+    <None Update="data\UI\UI1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="levels\level1.lvl">
+    <None Update="data\levels\level1.lvl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="settings\Input.json">
+    <None Update="data\settings\Input.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Content\" />
-    <Folder Include="levels\" />
+    <Folder Include="data\Content\" />
+    <Folder Include="data\levels\" />
   </ItemGroup>
 
 </Project>
