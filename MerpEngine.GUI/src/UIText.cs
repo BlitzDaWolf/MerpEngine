@@ -71,11 +71,9 @@ namespace MerpEngine.GUI
         private void SetXMLSize(string value) => int.TryParse(value, out Size);
         private void SetXMLColor(string value)
         {
-            Debug.Log(color.ToArgb());
             if(value[0] == '#')
             {
                 int argb = Int32.Parse("FF" + value.Replace("#", ""), NumberStyles.HexNumber);
-                Debug.Log(argb);
                 color = Color.FromArgb(argb);
             }
             else
