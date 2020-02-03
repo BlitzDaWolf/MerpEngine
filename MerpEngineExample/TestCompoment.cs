@@ -10,7 +10,6 @@ namespace MerpEngineExample
     public class TestCompoment : Compoment
     {
         public string test = "Yeet";
-        private bool succes;
 
         UIText t;
 

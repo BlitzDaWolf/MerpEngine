@@ -28,10 +28,10 @@ namespace MerpEngine.GUI
             Vector2 topLeft = new Vector2(ui.Rect.X, ui.Rect.Y);
             Vector2 bottomRight = new Vector2(ui.Rect.X + ui.Rect.Right, ui.Rect.Y + ui.Rect.Bottom);
 
-            return (mousePosition.X < topLeft.X 
-                    && mousePosition.Y < topLeft.Y)
-                && (mousePosition.X > bottomRight.X 
-                    && mousePosition.Y > bottomRight.Y);
+            return (mousePosition.X >= topLeft.X 
+                    && mousePosition.Y >= topLeft.Y)
+                && (mousePosition.X <= bottomRight.X 
+                    && mousePosition.Y <= bottomRight.Y);
         }
 
         public T GetUI<T>(string name) where T : UI

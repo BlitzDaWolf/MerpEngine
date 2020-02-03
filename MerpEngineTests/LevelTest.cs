@@ -14,7 +14,6 @@ namespace MerpEngineTests
         public void Setup()
         {
             level = new Level() { Name = "test" };
-            level.compoments.Add(new testCompoment());
         }
 
         [Test]
@@ -26,7 +25,7 @@ namespace MerpEngineTests
         [Test]
         public void HasCompoments()
         {
-            Assert.AreEqual(1, level.compoments.Count);
+            
         }
     }
 }

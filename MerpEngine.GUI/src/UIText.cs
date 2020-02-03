@@ -14,31 +14,39 @@ namespace MerpEngine.GUI
         public string Text{
             get => _Text;
             set {
-                Changed = true;
-                _Text = value;
+                if(_Text != value){
+                    Changed = true;
+                    _Text = value;
+                }
             }
         }
         public string Font{
             get => _Font;
             set {
-                Changed = true;
-                _Font = value;
+                if(_Font != value){
+                    Changed = true;
+                    _Font = value;
+                }
             }
         }
 
         public int Size{
             get => _Size;
             set{
-                Changed = true;
-                _Size = value;
+                if(_Size != value){
+                    Changed = true;
+                    _Size = value;
+                }
             }
         }
 
         public Color color{
             get => _color;
             set{
-                Changed = true;
-                _color = value;
+                if(_color != value){
+                    Changed = true;
+                    _color = value;
+                }
             }
         }
         #endregion
@@ -49,7 +57,6 @@ namespace MerpEngine.GUI
 
         private int _Size = 16;
 
-        private Rectangle _Rect;
         public Color _color = Color.Black;
 
         private Bitmap oldBitmap;
@@ -128,6 +135,12 @@ namespace MerpEngine.GUI
 
         public override void Update()
         {
+            if(LevelManager.LoadedLevel.GetGameObjectsWithType<EventHandeler>()[0].GetCompoment<EventHandeler>().isHovering(this)){
+                color = Color.Red;
+            }else{
+                color = Color.Green;
+            }
+
             if (Changed)
             {
                 if (sprite != null)
