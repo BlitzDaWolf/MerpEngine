@@ -1,14 +1,18 @@
 # About
 
-# TODO
+Merpengine is a program first 2D game engine
 
-* Add Unit tests
+There will be no editor made
+
+# TODO
 
 # road map
 
 * ~~Basic rendering~~
-* Compoments
-
+* ~~Compoments~~
+* GUI
+    * GUI System 80%
+    * GUI Canvas 50%
 
 ### dontate
 
