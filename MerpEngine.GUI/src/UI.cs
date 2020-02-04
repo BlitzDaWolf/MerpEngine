@@ -22,12 +22,22 @@ namespace MerpEngine.GUI
         public AnchorPoints Anchor;
         public Rectangle Rect;
 
+        public Canvas Canvas { get; internal set; }
+
+        public event EventHandler HoverEnter;
+        public event EventHandler HoverLeave;
+        public event EventHandler Click;
+
+        internal void OnHoverEnter() => HoverEnter?.Invoke(this, new EventArgs());
+        internal void OnHoverLeave() => HoverLeave?.Invoke(this, new EventArgs());
+        internal void OnClick() => Click?.Invoke(this, new EventArgs());
+
         public UI()
         {
-
+            Start();
         }
 
-        public UI(XmlNode node)
+        public UI(XmlNode node) : base()
         {
             RenderIndex += 900;
             var go = new GameObject();
@@ -77,6 +87,26 @@ namespace MerpEngine.GUI
             }
         }
 
+        public Vector2 toWorldPosition()
+        {
+            Vector2 position = new Vector2(Rect.X, Rect.Y);
+
+            Vector2 size = new Vector2(Screen.Width / 2, Screen.Heigth / 2);
+            Vector2 globalPosition = Vector2.Zero;
+
+            if (Canvas != null)
+            {
+                globalPosition = Canvas.Position;
+                size = Canvas.Size / 2;
+            }
+            else
+            {
+                globalPosition = Camera.Main.Position;
+            }
+
+            return (globalPosition - size) + position;
+        }
+
         public override void Start()
         {
             RenderIndex += 900;
@@ -90,8 +120,19 @@ namespace MerpEngine.GUI
             Vector2 position = new Vector2(Rect.X, Rect.Y);
 
             Vector2 size = new Vector2(Screen.Width / 2, Screen.Heigth / 2);
+            Vector2 globalPosition = Vector2.Zero;
+            if(Canvas != null)
+            {
+                globalPosition = Canvas.Position;
+                size = Canvas.Size / 2;
+            }
+            else
+            {
+                globalPosition = Camera.Main.Position;
+            }
+
             SpriteBatch.Draw(sprite.Material.texture,
-                (Camera.Main.Position - size) + position, Vector2.One, Vector2.Zero);
+                (globalPosition - size) + position, Vector2.One, Vector2.Zero);
         }
     }
 }

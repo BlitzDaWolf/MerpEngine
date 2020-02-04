@@ -78,6 +78,13 @@ namespace MerpEngine
         {
             return Compoments.Find(x => x is T) as T;
         }
+        public T[] GetCompoments<T>() where T : Compoment
+        {
+            return Compoments
+                .Where(x => x is T)
+                .Select(x => x as T)
+                .ToArray();
+        }
 
         public bool HasCompoment<T>() where T : Compoment => GetCompoment<T>() != null;
 

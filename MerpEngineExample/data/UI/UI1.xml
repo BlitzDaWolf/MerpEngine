@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Canvas>
-  <Text rect="0,0,200,64" color="Green" font="Arial" font_size="32" name="2">Hello 1</Text>
-  <Text rect="0,64,200,64" color="Red" font="Arial" font_size="32" name="1">Hello 2</Text>
+<Canvas fixed="True" size="200,100">
+  <Text rect="0,0,200,32" color="Green" font="Arial" font_size="32" name="test">Hello 1</Text>
+  <Text rect="0,64,200,32" color="Red" font="Arial" font_size="32" name="1">Hello 2</Text>
 </Canvas>

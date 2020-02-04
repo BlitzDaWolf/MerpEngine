@@ -97,5 +97,9 @@ namespace MerpEngine
         public static bool MouseButtonPress(MouseButton buton) => (buttonsDown.Contains(buton) && !buttonsDownLast.Contains(buton));
         public static bool MouseButtonRelease(MouseButton buton) => (!buttonsDown.Contains(buton) && buttonsDownLast.Contains(buton));
         public static bool MouseButtonDown(MouseButton buton) => (buttonsDown.Contains(buton));
+
+        public static bool MouseButtonPress(int buton) => MouseButtonPress((MouseButton)buton);
+        public static bool MouseButtonRelease(int buton) => MouseButtonRelease((MouseButton)buton);
+        public static bool MouseButtonDown(int buton) => MouseButtonDown((MouseButton)buton);
     }
 }

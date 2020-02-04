@@ -79,6 +79,17 @@ namespace MerpEngine
             }
             return objects.ToArray();
         }
+        
+        public T[] GetTypes<T>() where T : Compoment
+        {
+            var gameObjects = GetGameObjectsWithType<T>().ToList();
+            List<T> comps = new List<T>();
+            gameObjects.ForEach(x =>
+            {
+                comps.AddRange(x.GetCompoments<T>());
+            });
+            return comps.ToArray();
+        }
 
         internal void Destroy() { }
         internal void Start()

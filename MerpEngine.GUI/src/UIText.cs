@@ -156,10 +156,5 @@ namespace MerpEngine.GUI
                 Changed = false;
             }
         }
-
-        public override void Render()
-        {
-            base.Render();
-        }
     }
 }

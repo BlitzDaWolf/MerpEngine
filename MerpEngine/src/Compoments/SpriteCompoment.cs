@@ -24,7 +24,7 @@ namespace MerpEngine.Compoments
                 GameObject.GlobalPosition)
                 > Math.Max(Screen.Width, Screen.Heigth)) return;
 
-            SpriteBatch.Draw(sprite.Material.texture, (Position + GameObject.GlobalPosition), Scale, Vector2.Zero);
+            SpriteBatch.Draw(sprite.Material.texture, (GameObject.GlobalPosition), Scale, Vector2.Zero);
         }
 
         public override void Start()

@@ -99,7 +99,6 @@ namespace MerpEngine
 
             view.Update();
 
-            Input.Update();
             ContentPipe.loadMaterials();
 
             // Update scenes
@@ -113,6 +112,8 @@ namespace MerpEngine
                 Frame.AddFrame(frameCount);
                 sw.Restart();
             }
+
+            Input.Update();
 
             window.Title = $"{Frame.avg}";
         }
