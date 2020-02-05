@@ -132,7 +132,7 @@ namespace MerpEngine.GUI
             }
 
             SpriteBatch.Draw(sprite.Material.texture,
-                (globalPosition - size) + position, Vector2.One, Vector2.Zero);
+                (globalPosition - size) + position, this.Scale, Vector2.Zero);
         }
     }
 }

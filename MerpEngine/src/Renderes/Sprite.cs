@@ -1,5 +1,6 @@
 ﻿using OpenTK;
 using System;
+using System.IO;
 
 namespace MerpEngine.Renderes
 {
@@ -19,5 +20,21 @@ namespace MerpEngine.Renderes
         }
 
         public virtual void Render() => SpriteBatch.Draw(Material.texture, Position * sizePerPixel, Size, Vector2.Zero);
+
+        public static Sprite LoadSprite(string path)
+        {
+            var name = Path.GetFileNameWithoutExtension(path);
+            Material m;
+            if(Material.Materials.ContainsKey(name)){
+                m = Material.Materials[name];
+            }
+            else
+            {
+                var tex = ContentPipe.LoadTexture(path);
+                m = new Material(name, path, tex);
+            }
+            Sprite s = new Sprite(){ Material = m, sizePerPixel = Math.Max(m.texture.Width, m.texture.Heigth) };
+            return s;
+        }
     }
 }

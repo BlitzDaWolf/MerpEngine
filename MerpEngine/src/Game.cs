@@ -17,9 +17,6 @@ namespace MerpEngine
         public static void Start()
         {
             new Camera(Vector2.Zero);
-            Debug.Info($"Loading levels");
-            LevelManager.loadLevels();
-            Debug.Info($"loaded {LevelManager.Levels.Count} level's");
 
             Application.Start();
             DebugConsole dc = new DebugConsole();
@@ -73,6 +70,9 @@ namespace MerpEngine
 
         private void Window_Load(object sender, EventArgs e)
         {
+            Debug.Info($"Loading levels");
+            LevelManager.loadLevels();
+            Debug.Info($"loaded {LevelManager.Levels.Count} level's");
             Time.startTimer = Stopwatch.StartNew();
             level = new Level();
 
@@ -115,7 +115,7 @@ namespace MerpEngine
 
             Input.Update();
 
-            window.Title = $"{Frame.avg}";
+            window.Title = $"{Frame.FPS}";
         }
 
         private void Window_RenderFrame(object sender, FrameEventArgs e)

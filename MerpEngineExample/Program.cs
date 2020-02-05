@@ -10,7 +10,7 @@ namespace MerpEngineExample
         {
             ContentPipe.LoadInput();
 
-            RecreateLevel();
+            // RecreateLevel();
 
             DebugConsole.AddCommand("relevel", (a) => { RecreateLevel(); });
             DebugConsole.AddCommand("reinput", (a) => { RecreateInputs(); });
@@ -59,7 +59,7 @@ namespace MerpEngineExample
             {
                 GameObject go = new GameObject();
                 
-                go.AddCompoment<CameraMovement>();
+                // go.AddCompoment<CameraMovement>();
                 go.AddCompoment<TestCompoment>();
                 l.GameObjects.Add(go);
             }
