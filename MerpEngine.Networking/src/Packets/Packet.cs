@@ -15,6 +15,7 @@ namespace MerpEngine.Networking.Packets
         public bool packetBool;
         public string senderID;
         public PacketType packetType;
+        public NetworkSentType NetworkSentType;
 
         public Packet(PacketType type, string senderID)
         {
@@ -67,6 +68,6 @@ namespace MerpEngine.Networking.Packets
     public enum NetworkSentType
     {
         ServerOnly,
-        Client
+        Clients
     }
 }

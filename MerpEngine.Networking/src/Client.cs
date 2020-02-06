@@ -76,6 +76,28 @@ namespace MerpEngine.Networking
             }
         }
 
+        public void SyncGameobject(Packet p)
+        {
+            GameObject go = p.Gdata as GameObject;
+            if(go != null)
+            {
+                GameObject ggo = LevelManager.LoadedLevel.GetGameObject(go.Name);
+                if (ggo != null)
+                {
+                    ggo = go;
+                }
+                else
+                {
+                    CreateGameObject(p);
+                }
+            }
+        }
+
+        public void SyncCompoment(Packet p)
+        {
+
+        }
+
         void CreateGameObject(Packet p)
         {
             GameObject go = p.Gdata as GameObject;
