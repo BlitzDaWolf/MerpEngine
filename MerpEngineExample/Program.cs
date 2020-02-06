@@ -1,6 +1,9 @@
 ﻿using MerpEngine;
 using MerpEngine.Compoments;
+using MerpEngine.Networking;
+using MerpEngine.Networking.Interface;
 using MerpEngineExample.Compoments;
+using System;
 
 namespace MerpEngineExample
 {
@@ -8,16 +11,24 @@ namespace MerpEngineExample
     {
         static void Main(string[] args)
         {
-            ContentPipe.LoadInput();
+            if (Console.ReadLine().ToLower().StartsWith("s"))
+            {
+                IServer headless = new HeadlessServer();
+                headless.Start();
+            }
+            else
+            {
+                RecreateLevel();
 
-            // RecreateLevel();
+                ContentPipe.LoadInput();
 
-            DebugConsole.AddCommand("relevel", (a) => { RecreateLevel(); });
-            DebugConsole.AddCommand("reinput", (a) => { RecreateInputs(); });
+                DebugConsole.AddCommand("relevel", (a) => { RecreateLevel(); });
+                DebugConsole.AddCommand("reinput", (a) => { RecreateInputs(); });
 
-            Arguments.SetEnviroments(args);
+                Arguments.SetEnviroments(args);
 
-            Game.Start();
+                Game.Start();
+            }
         }
 
         static void RecreateInputs()
@@ -61,6 +72,7 @@ namespace MerpEngineExample
                 
                 // go.AddCompoment<CameraMovement>();
                 go.AddCompoment<TestCompoment>();
+                go.AddCompoment<Client>();
                 l.GameObjects.Add(go);
             }
             ContentPipe.SaveLevel(l, "data/levels/level1.lvl");

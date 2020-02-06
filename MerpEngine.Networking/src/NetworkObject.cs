@@ -1,9 +1,10 @@
 using System;
 using OpenTK;
 
-namespace MerpEngine.Networking{
+namespace MerpEngine.Networking
+{
     public class NetworkObject
     {
-        
+
     }
 }
