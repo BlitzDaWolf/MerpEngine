@@ -44,20 +44,7 @@ namespace MerpEngineExample
 
         public override void Update()
         {
-            if(Input.KeyPress(OpenTK.Input.Key.Space)){
-                buttonClicked(null, new EventArgs());
-            }
-
-            if (t != null)
-                t.Text = score.ToString();
-            if(tim != null)
-                tim.Text = timer.ToString();
-
-            timer -= score * Time.DeltaTime;
-            if(timer < 0){
-                Debug.Log(score);
-                Application.Quit();
-            }
+            
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Canvas fixed="True" size="200,100">
   <Text rect="0,0,200,42" color="Green" font="Arial" font_size="32" name="test">{Score}</Text>
-  <Text rect="0,42,200,42" color="Green" font="Arial" font_size="32" name="timer">{timer}</Text>
-  <Button default="test.png" rect="64,64,64,64" hover="test.png" name="click"></Button>
+  <Text rect="0,42,200,42" color="#FF5500" font="Arial" font_size="32" name="timer">{timer}</Text>
+  <Button default="test.png" rect="64,64,128,64" hover="test.png" name="click"></Button>
 </Canvas>

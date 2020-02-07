@@ -135,12 +135,6 @@ namespace MerpEngine.GUI
 
         public override void Update()
         {
-            if(LevelManager.LoadedLevel.GetGameObjectsWithType<EventHandeler>()[0].GetCompoment<EventHandeler>().isHovering(this)){
-                color = Color.Red;
-            }else{
-                color = Color.Green;
-            }
-
             if (Changed)
             {
                 if (sprite != null)
@@ -150,7 +144,7 @@ namespace MerpEngine.GUI
 
                 Texture2D tex2D = ContentPipe.LoadTexture(GenerateText());
 
-                Sprite spr = new Sprite() { Material = new Material(tex2D) };
+                Sprite spr = new Sprite() { Material = new Material(tex2D), sizePerPixel = Math.Max(Rect.Width, Rect.Height)};
                 sprite = spr;
 
                 Changed = false;

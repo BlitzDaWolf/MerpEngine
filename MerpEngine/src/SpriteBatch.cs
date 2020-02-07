@@ -12,9 +12,13 @@ namespace MerpEngine
             Vector2 position,
             Vector2 scale,
             Vector2 origin,
+            Color c = new Color(),
             int index = -2,
             RectangleF? sourceRec = null)
         {
+            if(c == new Color()){
+                c = Color.White;
+            }
             Vector3[] vericies = new Vector3[4]
             {
                 new Vector3(0, 0, index),
@@ -43,6 +47,7 @@ namespace MerpEngine
                 vericies[i] *= new Vector3(scale);
                 vericies[i] += new Vector3(position);
 
+                GL.Color3(c.R,c.G,c.B);
                 GL.Vertex2(vericies[i].X, vericies[i].Y);
             }
             GL.End();
