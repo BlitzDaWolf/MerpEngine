@@ -11,6 +11,7 @@ namespace MerpEngine.GUI
     public class UIText : UI
     {
         #region Public data
+        public string Original => _Original;
         public string Text{
             get => _Text;
             set {
@@ -52,6 +53,9 @@ namespace MerpEngine.GUI
         #endregion
 
         #region Private data
+
+        private string _Original = "";
+
         private string _Text;
         private string _Font = "Arial";
 
@@ -71,6 +75,7 @@ namespace MerpEngine.GUI
         public UIText(XmlNode node) : base(node)
         {
             Text = node.InnerText;
+            _Original = node.InnerText;
             for (int i = 0; i < node.Attributes.Count; i++)
             {
                 var atr = node.Attributes.Item(i);

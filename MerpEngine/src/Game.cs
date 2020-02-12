@@ -76,6 +76,9 @@ namespace MerpEngine
             Time.startTimer = Stopwatch.StartNew();
             level = new Level();
 
+            ContentPipe.LoadMaterials();
+            //ContentPipe.LoadMaterials("[{\"name\":\"blabla\",\"path\":\"test.png\"}]");
+
             GL.ClearColor(Color.Blue);
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
