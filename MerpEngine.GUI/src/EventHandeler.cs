@@ -110,6 +110,9 @@ namespace MerpEngine.GUI
                 {
                     u = new UIText(node);
                 }
+                else if (node.Name == "Image"){
+                    u = new UIImage(node);
+                }
                 else
                 {
                     u = new UI(node);

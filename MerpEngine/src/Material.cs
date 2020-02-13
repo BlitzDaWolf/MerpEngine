@@ -14,10 +14,7 @@ namespace MerpEngine
         [NonSerialized]
         public Texture2D texture;
 
-        public Material()
-        {
-            
-        }
+        public Material(){}
 
         public Material(string name, string path)
         {
@@ -56,7 +53,6 @@ namespace MerpEngine
             {
                 texture = ContentPipe.LoadTexture(path);
                 Materials.Add(name, this);
-                // ContentPipe.LoadMaterial(name, path, (mat) => texture = mat.texture);
             }
         }
     }
