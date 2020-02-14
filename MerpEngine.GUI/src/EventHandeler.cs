@@ -90,10 +90,10 @@ namespace MerpEngine.GUI
             serializer.Serialize(writer, null);
         }
 
-        public void Load(string path)
+        public Canvas Load(string path)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load("data/UI/UI1.xml");
+            doc.Load(path);
 
             Canvas canvas = new GameObject().AddCompoment<Canvas>();
             canvas.readXml(doc.DocumentElement);
@@ -119,6 +119,8 @@ namespace MerpEngine.GUI
                 }
                 canvas.AddElement(u);
             }
+
+            return canvas;
         }
     }
 }
