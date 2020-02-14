@@ -99,6 +99,7 @@ namespace MerpEngine
             }
 
             Time.deltaTime = (float)e.Time;
+            Time.TimePasted += Time.deltaTime;
 
             view.Update();
 

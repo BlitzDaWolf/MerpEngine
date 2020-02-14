@@ -17,11 +17,11 @@ namespace MerpEngineExample
         UIText tim;
         Button b;
 
-        float timer = 10;
+        float timer = 0;
 
         public override void Start()
         {
-            timer = 10;
+            timer = 0;
             GameObject go = new GameObject();
             EventHandeler eh = go.AddCompoment<EventHandeler>();
             eh.Load("data/UI/UI1.xml");
@@ -35,16 +35,15 @@ namespace MerpEngineExample
 
         private void buttonClicked(object sender, EventArgs e)
         {
-            Random rn = new Random();
             score++;
-            b.Rect = new System.Drawing.Rectangle(rn.Next(Screen.Width - 64), rn.Next(Screen.Heigth -64), 256 / score, 256 / score);
-            timer += score * rn.Next(7);
-            b.Scale = new OpenTK.Vector2(1f / score, 1f / score);
         }
 
         public override void Update()
         {
-            
+            timer += (600f) * Time.DeltaTime;
+            var ts = new TimeSpan(0,0,(int)timer);
+            t.Text = ts.ToString();
+            tim.Text = $"{DateTime.Now + ts}\n{DateTime.Now}\n{(DateTime.Now + ts) - DateTime.Now}";
         }
     }
 }

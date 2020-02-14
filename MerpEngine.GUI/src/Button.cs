@@ -34,7 +34,6 @@ namespace MerpEngine.GUI
 
             HoverEnter += hovering;
             HoverLeave += hoverLeave;
-            Click += (sender, args) => Debug.Log("There has been clicked");
             base.sprite = Default;
         }
 

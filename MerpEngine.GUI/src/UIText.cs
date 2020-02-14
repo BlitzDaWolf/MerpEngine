@@ -74,6 +74,7 @@ namespace MerpEngine.GUI
         #region XMLLoading
         public UIText(XmlNode node) : base(node)
         {
+            base.RenderIndex += 50;
             Text = node.InnerText;
             _Original = node.InnerText;
             for (int i = 0; i < node.Attributes.Count; i++)
