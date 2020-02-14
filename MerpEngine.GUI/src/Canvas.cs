@@ -1,8 +1,7 @@
 ﻿using OpenTK;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Xml;
+using System.Linq;
 
 namespace MerpEngine.GUI
 {
@@ -38,6 +37,8 @@ namespace MerpEngine.GUI
             UIElements.Add(elm);
             elm.Canvas = this;
         }
+        public UI GetElementByName(string name) => UIElements.Where(x => x.Name == name).FirstOrDefault();
+        public T GetElementByName<T>(string name) where T : UI => UIElements.Where(x => x is T && x.Name == name).FirstOrDefault() as T;
 
         internal void readXml(XmlElement documentElement)
         {

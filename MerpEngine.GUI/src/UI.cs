@@ -80,6 +80,7 @@ namespace MerpEngine.GUI
                 }
                 if(nameAtr != null)
                 {
+                    Name = nameAtr.Value;
                     GameObject.Name = nameAtr.Value;
                 }
             }
