@@ -95,7 +95,10 @@ namespace MerpEngine.Networking
 
         public void SyncCompoment(Packet p)
         {
+            if(p.Gdata is SyncCompoment)
+            {
 
+            }
         }
 
         void CreateGameObject(Packet p)

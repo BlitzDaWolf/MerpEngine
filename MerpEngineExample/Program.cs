@@ -50,23 +50,6 @@ namespace MerpEngineExample
             Debug.Log("Recreating level");
             Level l = new Level();
 
-            /*{
-                GameObject go = new GameObject();
-                go.Position = new OpenTK.Vector2(0, 0);
-                var sc = go.AddCompoment<SpriteCompoment>();
-                sc.RenderIndex = 0;
-                sc.sprite = new MerpEngine.Renderes.Sprite() { Material = new Material("test", "test.png"), sizePerPixel = 128 };
-                l.GameObjects.Add(go);
-
-                GameObject go2 = new GameObject();
-                go2.Position = new OpenTK.Vector2(1, 0);
-                var sc2 = go2.AddCompoment<SpriteCompoment>();
-                sc2.RenderIndex = 0;
-                sc2.sprite = new MerpEngine.Renderes.Sprite() { Material = new Material("test2", "test2.png"), sizePerPixel = 128 };
-                l.GameObjects.Add(go2);
-                go2.parrent = go;
-            }*/
-
             {
                 GameObject go = new GameObject();
                 

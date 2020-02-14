@@ -5,6 +5,7 @@ using System.Net.Sockets;
 using System.Net;
 using System.Threading;
 using MerpEngine.Networking.Packets;
+using System.Linq;
 
 namespace MerpEngine.Networking
 {
@@ -83,7 +84,18 @@ namespace MerpEngine.Networking
 
         internal static void DataManager(Packet packet)
         {
+            switch (packet.NetworkSentType)
+            {
+                case NetworkSentType.ServerOnly:
 
+                    break;
+                case NetworkSentType.Clients:
+                    IServer.Instance.Users.Where(x => x.id != packet.senderID)
+                        .ToList().ForEach(x => x.clientSocket.Send(packet.ToBytes()));
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void Stop()

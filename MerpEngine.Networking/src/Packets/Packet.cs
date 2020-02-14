@@ -13,11 +13,11 @@ namespace MerpEngine.Networking.Packets
         public object Gdata;
         public int packetInt;
         public bool packetBool;
-        public string senderID;
+        public Guid senderID;
         public PacketType packetType;
         public NetworkSentType NetworkSentType;
 
-        public Packet(PacketType type, string senderID)
+        public Packet(PacketType type, Guid senderID)
         {
             Gdata = new List<string>();
             this.senderID = senderID;

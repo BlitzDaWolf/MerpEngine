@@ -25,12 +25,12 @@ namespace MerpEngine.Networking
         }
         public User(Socket s) : base()
         {
-            this.clientSocket = s;
+            clientSocket = s;
         }
 
         public void SendRegistrationPacket()
         {
-            Packet p = new Packet(PacketType.Registration, id.ToString());
+            Packet p = new Packet(PacketType.Registration, id);
 
             clientSocket.Send(p.ToBytes());
         } 
