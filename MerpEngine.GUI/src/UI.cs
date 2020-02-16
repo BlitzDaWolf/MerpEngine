@@ -29,6 +29,7 @@ namespace MerpEngine.GUI
         public event EventHandler Click;
 
         public OpenTK.Color Tint = OpenTK.Color.White;
+        public string id;
 
         internal void OnHoverEnter() => HoverEnter?.Invoke(this, new EventArgs());
         internal void OnHoverLeave() => HoverLeave?.Invoke(this, new EventArgs());

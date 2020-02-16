@@ -74,6 +74,8 @@ namespace MerpEngine.GUI
                     && mousePosition.Y <= bottomRight.Y);
         }
 
+        public Canvas GetCanvasByName(string name) => LevelManager.LoadedLevel.GetTypes<Canvas>().FirstOrDefault(x=>x.Name == name);
+
         public T GetUI<T>(string name) where T : UI
         {
             GameObject go = LevelManager.LoadedLevel.GetGameObject(name);

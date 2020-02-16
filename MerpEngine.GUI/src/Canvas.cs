@@ -39,6 +39,7 @@ namespace MerpEngine.GUI
         }
         public UI GetElementByName(string name) => UIElements.Where(x => x.Name == name).FirstOrDefault();
         public T GetElementByName<T>(string name) where T : UI => UIElements.Where(x => x is T && x.Name == name).FirstOrDefault() as T;
+        public T GetElementById<T>(string id) where T : UI => UIElements.FirstOrDefault(x => x is T && x.id == id) as T;
 
         internal void readXml(XmlElement documentElement)
         {
