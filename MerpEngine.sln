@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerpEngineExample", "MerpEn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MerpEngine.GUI", "MerpEngine.GUI\MerpEngine.GUI.csproj", "{9B5A8A8A-ADD5-4492-B40C-0A5E2F1F2275}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerpEngine.Physics", "MerpEngine.Physics\MerpEngine.Physics.csproj", "{21574580-832C-4731-B219-5F07EC31A89E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{9B5A8A8A-ADD5-4492-B40C-0A5E2F1F2275}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B5A8A8A-ADD5-4492-B40C-0A5E2F1F2275}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B5A8A8A-ADD5-4492-B40C-0A5E2F1F2275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21574580-832C-4731-B219-5F07EC31A89E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21574580-832C-4731-B219-5F07EC31A89E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21574580-832C-4731-B219-5F07EC31A89E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21574580-832C-4731-B219-5F07EC31A89E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
