@@ -11,6 +11,7 @@ namespace MerpEngine.GUI
     public class UIText : UI
     {
         #region Public data
+        public string Original => _Original;
         public string Text{
             get => _Text;
             set {
@@ -52,6 +53,9 @@ namespace MerpEngine.GUI
         #endregion
 
         #region Private data
+
+        private string _Original = "";
+
         private string _Text;
         private string _Font = "Arial";
 
@@ -70,7 +74,9 @@ namespace MerpEngine.GUI
         #region XMLLoading
         public UIText(XmlNode node) : base(node)
         {
+            base.RenderIndex += 50;
             Text = node.InnerText;
+            _Original = node.InnerText;
             for (int i = 0; i < node.Attributes.Count; i++)
             {
                 var atr = node.Attributes.Item(i);
@@ -135,12 +141,6 @@ namespace MerpEngine.GUI
 
         public override void Update()
         {
-            if(LevelManager.LoadedLevel.GetGameObjectsWithType<EventHandeler>()[0].GetCompoment<EventHandeler>().isHovering(this)){
-                color = Color.Red;
-            }else{
-                color = Color.Green;
-            }
-
             if (Changed)
             {
                 if (sprite != null)
@@ -150,7 +150,7 @@ namespace MerpEngine.GUI
 
                 Texture2D tex2D = ContentPipe.LoadTexture(GenerateText());
 
-                Sprite spr = new Sprite() { Material = new Material(tex2D) };
+                Sprite spr = new Sprite() { Material = new Material(tex2D), sizePerPixel = Math.Max(Rect.Width, Rect.Height)};
                 sprite = spr;
 
                 Changed = false;

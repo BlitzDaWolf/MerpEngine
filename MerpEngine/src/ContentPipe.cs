@@ -26,27 +26,6 @@ namespace MerpEngine
             toLoadMaterial = new Dictionary<string, Tuple<string, Action<Material>>>();
         }
 
-        public static void LoadMaterial(string name, string path, Action<Material> callback)
-        {
-            if (Material.Materials.ContainsKey(name))
-            {
-                callback(Material.Materials[name]);
-            }
-            else
-            {
-                if (toLoadMaterial.ContainsKey(name))
-                {
-                    Action<Material> newActions = new Action<Material>(callback);
-                    newActions += toLoadMaterial[name].Item2;
-                    toLoadMaterial[name] = new Tuple<string, Action<Material>>(toLoadMaterial[name].Item1, newActions);
-                }
-                else
-                {
-                    toLoadMaterial.Add(name, new Tuple<string, Action<Material>>(path, callback));
-                }
-            }
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -151,6 +130,24 @@ namespace MerpEngine
                 AxiesManager ax = new AxiesManager();
                 Debug.Error(ex);
             }
+        }
+
+        public static void LoadMaterials()
+        {
+            if(Directory.Exists("data/material"))
+            {
+                var mats = Directory.GetFiles("data/material", "*.json");
+                for(int i = 0; i < mats.Length; i++){
+                    Debug.Log($"Loading {mats[i]}");
+                    LoadMaterials(File.ReadAllText(mats[i]));
+                }
+            }
+        }
+
+        public static void LoadMaterials(string value)
+        {
+            List<Material> ms = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Material>>(value);
+            ms.ForEach(x => x.Reload());
         }
     }
 }

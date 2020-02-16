@@ -1,6 +1,7 @@
 ﻿using MerpEngine;
 using MerpEngine.Compoments;
 using MerpEngineExample.Compoments;
+using System.Collections.Generic;
 
 namespace MerpEngineExample
 {
@@ -11,6 +12,10 @@ namespace MerpEngineExample
             ContentPipe.LoadInput();
 
             // RecreateLevel();
+            Material m = new Material("","");
+            List<Material> ms = new List<Material>();
+            ms.Add(m);
+            Debug.Log(Newtonsoft.Json.JsonConvert.SerializeObject(ms));
 
             DebugConsole.AddCommand("relevel", (a) => { RecreateLevel(); });
             DebugConsole.AddCommand("reinput", (a) => { RecreateInputs(); });

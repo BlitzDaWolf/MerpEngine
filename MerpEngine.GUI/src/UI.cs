@@ -28,6 +28,9 @@ namespace MerpEngine.GUI
         public event EventHandler HoverLeave;
         public event EventHandler Click;
 
+        public OpenTK.Color Tint = OpenTK.Color.White;
+        public string id;
+
         internal void OnHoverEnter() => HoverEnter?.Invoke(this, new EventArgs());
         internal void OnHoverLeave() => HoverLeave?.Invoke(this, new EventArgs());
         internal void OnClick() => Click?.Invoke(this, new EventArgs());
@@ -78,6 +81,7 @@ namespace MerpEngine.GUI
                 }
                 if(nameAtr != null)
                 {
+                    Name = nameAtr.Value;
                     GameObject.Name = nameAtr.Value;
                 }
             }
@@ -131,8 +135,11 @@ namespace MerpEngine.GUI
                 globalPosition = Camera.Main.Position;
             }
 
+            this.Scale = sprite.Material.texture.Size;
+            this.Scale = new Vector2(Rect.Width / this.Scale.X, Rect.Height / this.Scale.Y);
+
             SpriteBatch.Draw(sprite.Material.texture,
-                (globalPosition - size) + position, this.Scale, Vector2.Zero);
+                (globalPosition - size) + position, this.Scale, Vector2.Zero, Tint);
         }
     }
 }

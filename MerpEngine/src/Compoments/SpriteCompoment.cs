@@ -57,7 +57,8 @@ namespace MerpEngine.Compoments
             }
             else
             {
-                ContentPipe.LoadMaterial(name, path, LoadNewSprite);
+                
+                // ContentPipe.LoadMaterial(name, path, LoadNewSprite);
             }
         }
         #endregion

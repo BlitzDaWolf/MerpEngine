@@ -74,6 +74,8 @@ namespace MerpEngine.GUI
                     && mousePosition.Y <= bottomRight.Y);
         }
 
+        public Canvas GetCanvasByName(string name) => LevelManager.LoadedLevel.GetTypes<Canvas>().FirstOrDefault(x=>x.Name == name);
+
         public T GetUI<T>(string name) where T : UI
         {
             GameObject go = LevelManager.LoadedLevel.GetGameObject(name);
@@ -90,10 +92,10 @@ namespace MerpEngine.GUI
             serializer.Serialize(writer, null);
         }
 
-        public void Load(string path)
+        public Canvas Load(string path)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load("data/UI/UI1.xml");
+            doc.Load(path);
 
             Canvas canvas = new GameObject().AddCompoment<Canvas>();
             canvas.readXml(doc.DocumentElement);
@@ -110,12 +112,17 @@ namespace MerpEngine.GUI
                 {
                     u = new UIText(node);
                 }
+                else if (node.Name == "Image"){
+                    u = new UIImage(node);
+                }
                 else
                 {
                     u = new UI(node);
                 }
                 canvas.AddElement(u);
             }
+
+            return canvas;
         }
     }
 }
